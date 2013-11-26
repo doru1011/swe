@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+                 version="2.0">
+  
+	<entity class="de.shop.artikelverwaltung.domain.Artikel" cacheable="true" metadata-complete="false"/>
+	<entity class="de.shop.bestellverwaltung.domain.Bestellung" cacheable="true" metadata-complete="false"/>
+	<entity class="de.shop.bestellverwaltung.domain.Bestellposition" cacheable="true" metadata-complete="false"/>
+	<entity class="de.shop.bestellverwaltung.domain.Lieferant" cacheable="true" metadata-complete="false"/>
+	<entity class="de.shop.kundenverwaltung.domain.Adresse" cacheable="true" metadata-complete="false"/>
+	<entity class="de.shop.kundenverwaltung.domain.Kunde" cacheable="true" metadata-complete="false"/>
+</entity-mappings>
