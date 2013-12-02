@@ -28,6 +28,11 @@ public final class Constants {
 	public static final String HASH_ENCODING = "base64";
 	public static final String HASH_CHARSET = "UTF-8";
 	
+	// JSF
+	public static final String JSF_INDEX = "/index";
+	public static final String JSF_DEFAULT_ERROR = "/error/defaultError";
+	public static final String JSF_REDIRECT_SUFFIX = "?faces-redirect=true";
+	
 	private Constants() {
 	}
 }
