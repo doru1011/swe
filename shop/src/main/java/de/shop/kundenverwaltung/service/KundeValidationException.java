@@ -18,4 +18,10 @@ public class KundeValidationException extends KundeServiceException {
 	public Collection<ConstraintViolation<Kunde>> getViolations() {
 		return violations;
 	}
+
+	@Override
+	public String getMessageKey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

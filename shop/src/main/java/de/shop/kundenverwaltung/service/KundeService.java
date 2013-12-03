@@ -2,6 +2,7 @@ package de.shop.kundenverwaltung.service;
 
 import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +30,7 @@ import de.shop.util.Log;
 import de.shop.util.MimeType;
 import de.shop.util.NoMimeTypeException;
 import de.shop.util.NotFoundException;
+import de.shop.util.persistence.ConcurrentDeletedException;
 
 @RolesAllowed({"mitarbeiter", "admin"})
 @SecurityDomain("shop")
@@ -98,6 +100,63 @@ public class KundeService implements Serializable {
 		return kunde;
 	}
 	
+	/**
+	 * Potenzielle IDs zu einem gegebenen ID-Praefix suchen
+	 * @param idPrefix der Praefix zu potenziellen IDs als String
+	 * @return Liste der passenden Praefixe
+	 */
+	
+	public List<Long> findIdsByPrefix(String idPrefix) {
+		if (Strings.isNullOrEmpty(idPrefix)) {
+			return Collections.emptyList();
+		}
+		final List<Long> ids = em.createNamedQuery(Kunde.FIND_KUNDE_BY_ID, Long.class)
+				                 .setParameter(Kunde.PARAM_KUNDE_ID, idPrefix + '%')
+				                 .getResultList();
+		return ids;
+	}
+	
+	/**
+	 * Kunden suchen, deren ID den gleiche Praefix hat.
+	 * @param id Praefix der ID
+	 * @return Liste mit Kunden mit passender ID
+	 */
+	public List<Kunde> findKundenByIdPrefix(Long id) {
+		if (id == null) {
+			return Collections.emptyList();
+		}
+		
+		return em.createNamedQuery(Kunde.FIND_KUNDE_BY_ID, Kunde.class)
+				 .setParameter(Kunde.PARAM_KUNDE_ID, id.toString() + '%')
+				 .getResultList();
+	}
+	
+	/**
+	 * Alle Kunden in einer bestimmten Reihenfolge ermitteln
+	 * @param fetch Angabe, welche Objekte mitgeladen werden sollen, z.B. Bestellungen.
+	 * @param order Sortierreihenfolge, z.B. nach aufsteigenden IDs.
+	 * @return Liste der Kunden
+	 */
+	public List<Kunde> findAllKunden(FetchType fetch, OrderByType order) {
+		final TypedQuery<Kunde> query = OrderByType.USERNAME.equals(order)
+				                        ? em.createNamedQuery(Kunde.FIND_KUNDEN_ORDER_BY_USERNAME,
+										                      Kunde.class)
+				                        : em.createNamedQuery(Kunde.FIND_KUNDEN, Kunde.class);
+		switch (fetch) {
+			case NUR_KUNDE:
+				break;
+			case MIT_BESTELLUNGEN:
+				query.setHint("javax.persistence.loadgraph", Kunde.GRAPH_BESTELLUNGEN);
+				break;
+
+			default:
+				break;
+		}
+		
+		final List<Kunde> kunden = query.getResultList();
+		return kunden;
+	}
+	
 	public List<Kunde> findAllKunden(FetchType fetch) {
 		final TypedQuery<Kunde> query = em.createNamedQuery(Kunde.FIND_KUNDEN, Kunde.class);
 		switch (fetch) {
@@ -126,6 +185,64 @@ public class KundeService implements Serializable {
 		}
 	}
 	
+	/**
+	 * Kunden mit gleichem Nachnamen suchen.
+	 * @param nachname Der gemeinsame Nachname der gesuchten Kunden
+	 * @param fetch Angabe, welche Objekte mitgeladen werden sollen, z.B. Bestellungen
+	 * @return Liste der gefundenen Kunden
+	 */
+	public List<Kunde> findKundenByNachname(String nachname, FetchType fetch) {
+		List<Kunde> kunden;
+		switch (fetch) {
+			case NUR_KUNDE:
+				kunden = em.createNamedQuery(Kunde.FIND_KUNDEN_BY_NACHNAME, Kunde.class)
+						   .setParameter(Kunde.PARAM_KUNDE_NACHNAME, nachname)
+                           .getResultList();
+				break;
+			
+			case MIT_BESTELLUNGEN:
+				kunden = em.createNamedQuery(Kunde.FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN,
+						                     Kunde.class)
+						   .setParameter(Kunde.PARAM_KUNDE_NACHNAME, nachname)
+                           .getResultList();
+				break;
+
+			default:
+				kunden = em.createNamedQuery(Kunde.FIND_KUNDEN_BY_NACHNAME, Kunde.class)
+						   .setParameter(Kunde.PARAM_KUNDE_NACHNAME, nachname)
+                           .getResultList();
+				break;
+		}
+		
+		// FIXME https://hibernate.atlassian.net/browse/HHH-8285 : @NamedEntityGraph ab Java EE 7 bzw. JPA 2.1
+		//final TypedQuery<AbstractKunde> query = em.createNamedQuery(AbstractKunde.FIND_KUNDEN_BY_NACHNAME,
+		//                                                            AbstractKunde.class)
+		//				                          .setParameter(AbstractKunde.PARAM_KUNDE_NACHNAME, nachname);
+		//switch (fetch) {
+		//	case NUR_KUNDE:
+		//		break;
+		//	case MIT_BESTELLUNGEN:
+		//		query.setHint("javax.persistence.loadgraph", AbstractKunde.GRAPH_BESTELLUNGEN);
+		//		break;
+		//	case MIT_WARTUNGSVERTRAEGEN:
+		//		query.setHint("javax.persistence.loadgraph", AbstractKunde.GRAPH_WARTUNGSVERTRAEGE);
+		//		break;
+		//	default:
+		//		break;
+		//}
+		//
+		//final List<AbstractKunde> kunden = query.getResultList();
+		return kunden;
+	}
+	
+	
+	public List<String> findNachnamenByPrefix(String nachnamePrefix) {
+		return em.createNamedQuery(Kunde.FIND_NACHNAMEN_BY_PREFIX, String.class)
+				 .setParameter(Kunde.PARAM_KUNDE_NACHNAME_PREFIX, nachnamePrefix + '%')
+				 .getResultList();
+	}	
+	
+		
 	public List<Kunde> findKundenByNachname(String nachname) {
 		if (Strings.isNullOrEmpty(nachname)) {
 			return null;
@@ -169,6 +286,48 @@ public class KundeService implements Serializable {
 	
 		em.persist(kunde);
 		event.fire(kunde);
+		
+		return kunde;
+	}
+	
+	/**
+	 * Einen vorhandenen Kunden aktualisieren
+	 * @param kunde Der aktualisierte Kunde
+	 * @param geaendertPassword Wurde das Passwort aktualisiert und muss es deshalb verschluesselt werden?
+	 * @return Der aktualisierte Kunde
+	 */
+	public <T extends Kunde> T updateKunde(T kunde, boolean geaendertPassword) {
+		if (kunde == null) {
+			return null;
+		}
+		
+		// kunde vom EntityManager trennen, weil anschliessend z.B. nach Id und Email gesucht wird
+		em.detach(kunde);
+		
+		// Wurde das Objekt konkurrierend geloescht?
+		Kunde tmp = findKundeById(kunde.getId(), FetchType.NUR_KUNDE);
+		if (tmp == null) {
+			throw new ConcurrentDeletedException(kunde.getId());
+		}
+		em.detach(tmp);
+		
+		// Gibt es ein anderes Objekt mit gleicher Email-Adresse?
+		tmp = findKundeByEmail(kunde.getEmail());
+		if (tmp != null) {
+			em.detach(tmp);
+			if (tmp.getId().longValue() != kunde.getId().longValue()) {
+				// anderes Objekt mit gleichem Attributwert fuer email
+				throw new EmailExistsException(kunde.getEmail());
+			}
+		}
+		
+		// Password verschluesseln
+		if (geaendertPassword) {
+			passwordVerschluesseln(kunde);
+		}
+
+		kunde = em.merge(kunde);   // OptimisticLockException
+		kunde.setPasswordWdh(kunde.getPassword());
 		
 		return kunde;
 	}

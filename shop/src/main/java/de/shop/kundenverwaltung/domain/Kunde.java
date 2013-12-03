@@ -78,6 +78,11 @@ import de.shop.util.File;
 					+ "FROM Kunde k "
 					+ "WHERE UPPER(k.nachname) LIKE UPPER(:" + Kunde.PARAM_KUNDE_NACHNAME
 					+ ") ORDER BY k.id ASC"),
+	@NamedQuery(name  = Kunde.FIND_NACHNAMEN_BY_PREFIX,
+	query = "SELECT   DISTINCT k.nachname"
+					+ " FROM  AbstractKunde k "
+	   	            + " WHERE UPPER(k.nachname) LIKE UPPER(:"
+	   	           + Kunde.PARAM_KUNDE_NACHNAME_PREFIX + ")"),
 	@NamedQuery(name  = Kunde.FIND_KUNDE_BY_ID,
 		    query = "SELECT   k"
 		    		+ " FROM  Kunde k"
@@ -94,6 +99,11 @@ import de.shop.util.File;
     query = "SELECT DISTINCT k"
             + " FROM   Kunde k LEFT JOIN FETCH k.bestellungen"
             + " WHERE  k.id = :" + Kunde.PARAM_KUNDE_ID),
+    @NamedQuery(name  = Kunde.FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN,
+    query = "SELECT      DISTINCT k"
+		      + " FROM     AbstractKunde k LEFT JOIN FETCH k.bestellungen"
+		      + " WHERE    UPPER(k.nachname) = UPPER(:" + Kunde.PARAM_KUNDE_NACHNAME + ")"
+		      + " ORDER BY k.id"),
     @NamedQuery(name  = Kunde.FIND_KUNDE_BY_USERNAME,
     query = "SELECT   k"
 	        + " FROM  Kunde k"
@@ -129,10 +139,13 @@ public class Kunde implements Serializable {
 	public static final String FIND_KUNDEN_BY_ID = PREFIX + "findKundenById";
 	public static final String FIND_KUNDE_BY_EMAIL = PREFIX + "findKundeByEmail";
 	public static final String FIND_KUNDE_BY_ID_FETCH_BESTELLUNGEN = PREFIX + "findKundeByIdFetchBestellungen";
+	public static final String FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN =
+            PREFIX + "findKundenByNachnameFetchBestellungen";
 	public static final String FIND_KUNDE_BY_USERNAME = PREFIX + "findKundeByUserName";
 	public static final String FIND_KUNDEN_ORDER_BY_USERNAME = PREFIX + "findKundenOrderByUsername";
 	public static final String FIND_KUNDE_BY_BESTELLUNG_ID = PREFIX + "findKundeByBestellungId";
 	public static final String FIND_USERNAME_BY_USERNAME_PREFIX = PREFIX + "findKundeByUsernamePrefix";
+	public static final String FIND_NACHNAMEN_BY_PREFIX = PREFIX + "findNachnamenByPrefix";
 	
 	public static final String PARAM_KUNDE_NACHNAME = "nachname";
 	public static final String PARAM_KUNDE_ID = "id";
@@ -141,6 +154,7 @@ public class Kunde implements Serializable {
 	public static final String PARAM_BESTELLUNG_ID = "bestellungId";
 	public static final String PARAM_USERNAME_PREFIX = "usernamePrefix";
 	public static final String GRAPH_BESTELLUNGEN = "bestellungen";
+	public static final String PARAM_KUNDE_NACHNAME_PREFIX = "nachnamePrefix";
 	
 	//Pattern mit UTF-8 (statt Latin-1 bzw. ISO-8859-1) Schreibweise fuer Umlaute:
 	private static final String NAME_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+";
@@ -223,6 +237,7 @@ public class Kunde implements Serializable {
 	
 	@Transient
 	private URI bestellungenUri;
+	
 	
 	@PrePersist
 	protected void prePersist() {

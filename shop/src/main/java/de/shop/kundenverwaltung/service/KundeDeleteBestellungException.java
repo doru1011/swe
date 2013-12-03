@@ -10,6 +10,7 @@ public class KundeDeleteBestellungException extends KundeServiceException {
 	private static final long serialVersionUID = 2237194289969083093L;
 	private final String kundeUsername;
 	private final int anzahlBestellungen;
+	private static final String MESSAGE_KEY = "kunde.deleteMitBestellung";
 	
 	public KundeDeleteBestellungException(Kunde kunde) {
 		super("Kunde " + kunde.getUsername() + " kann nicht geloescht werden: "
@@ -23,5 +24,10 @@ public class KundeDeleteBestellungException extends KundeServiceException {
 	}
 	public int getAnzahlBestellungen() {
 		return anzahlBestellungen;
+	}
+
+	@Override
+	public String getMessageKey() {
+		return MESSAGE_KEY;
 	}
 }
