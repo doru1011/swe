@@ -59,8 +59,8 @@ public class KundeService implements Serializable {
 	@Inject
 	private AuthService authService;
 	
-//	@Inject
-//	private transient ManagedExecutorService managedExecutorService;
+	@Inject
+	private transient ManagedExecutorService managedExecutorService;
 	
 	@PostConstruct
 	private void postConstruct() {
@@ -236,52 +236,52 @@ public class KundeService implements Serializable {
 
 		LOGGER.debugf("passwordVerschluesseln ENDE: %s", verschluesselt);
 	}
-//	
-//	public Kunde setFile(Long kundeId, byte[] bytes) {
-//		final Kunde kunde = findKundeById(kundeId, FetchType.NUR_KUNDE);
-//		if (kunde == null) {
-//			return null;
-//		}
-//		final MimeType mimeType = fileHelper.getMimeType(bytes);
-//		setFile(kunde, bytes, mimeType);
-//		return kunde;
-//	}
-//	
-//	public Kunde setFile(Kunde kunde, byte[] bytes, String mimeTypeStr) {
-//		final MimeType mimeType = MimeType.build(mimeTypeStr);
-//		setFile(kunde, bytes, mimeType);
-//		return kunde;
-//	}
-//	
-//	private void setFile(Kunde kunde, byte[] bytes, MimeType mimeType) {
-//		if (mimeType == null) {
-//			throw new NoMimeTypeException();
-//		}
-//		
-//		final String filename = fileHelper.getFilename(kunde.getClass(), kunde.getId(), mimeType);
-//		
-//		// Gibt es noch kein (Multimedia-) File
-//		File file = kunde.getFile();
-//		if (kunde.getFile() == null) {
-//			file = new File(bytes, filename, mimeType);
-//			LOGGER.tracef("Neue Datei %s", file);
-//			kunde.setFile(file);
-//			em.persist(file);
-//		}
-//		else {
-//			file.set(bytes, filename, mimeType);
-//			LOGGER.tracef("Ueberschreiben der Datei %s", file);
-//			em.merge(file);
-//		}
-//
-//		// Hochgeladenes Bild/Video/Audio in einem parallelen Thread als Datei fuer die Web-Anwendung abspeichern
-//		final File newFile = kunde.getFile();
-//		final Runnable storeFile = new Runnable() {
-//			@Override
-//			public void run() {
-//				fileHelper.store(newFile);
-//			}
-//		};
-//		managedExecutorService.execute(storeFile);
-//	}
+	
+	public Kunde setFile(Long kundeId, byte[] bytes) {
+		final Kunde kunde = findKundeById(kundeId, FetchType.NUR_KUNDE);
+		if (kunde == null) {
+			return null;
+		}
+		final MimeType mimeType = fileHelper.getMimeType(bytes);
+		setFile(kunde, bytes, mimeType);
+		return kunde;
+	}
+	
+	public Kunde setFile(Kunde kunde, byte[] bytes, String mimeTypeStr) {
+		final MimeType mimeType = MimeType.build(mimeTypeStr);
+		setFile(kunde, bytes, mimeType);
+		return kunde;
+	}
+	
+	private void setFile(Kunde kunde, byte[] bytes, MimeType mimeType) {
+		if (mimeType == null) {
+			throw new NoMimeTypeException();
+		}
+		
+		final String filename = fileHelper.getFilename(kunde.getClass(), kunde.getId(), mimeType);
+		
+		// Gibt es noch kein (Multimedia-) File
+		File file = kunde.getFile();
+		if (kunde.getFile() == null) {
+			file = new File(bytes, filename, mimeType);
+			LOGGER.tracef("Neue Datei %s", file);
+			kunde.setFile(file);
+			em.persist(file);
+		}
+		else {
+			file.set(bytes, filename, mimeType);
+			LOGGER.tracef("Ueberschreiben der Datei %s", file);
+			em.merge(file);
+		}
+
+		// Hochgeladenes Bild/Video/Audio in einem parallelen Thread als Datei fuer die Web-Anwendung abspeichern
+		final File newFile = kunde.getFile();
+		final Runnable storeFile = new Runnable() {
+			@Override
+			public void run() {
+				fileHelper.store(newFile);
+			}
+		};
+		managedExecutorService.execute(storeFile);
+	}
 }
