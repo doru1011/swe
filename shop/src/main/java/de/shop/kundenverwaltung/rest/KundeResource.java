@@ -49,7 +49,7 @@ import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.kundenverwaltung.service.KundeService.FetchType;
-import de.shop.util.File;
+import de.shop.util.persistence.File;
 import de.shop.util.Log;
 import de.shop.util.NotFoundException;
 import de.shop.util.rest.UriHelper;

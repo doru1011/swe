@@ -62,7 +62,7 @@ import org.jboss.logging.Logger;
 
 import de.shop.auth.domain.RolleType;
 import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.util.File;
+import de.shop.util.persistence.File;
 
 
 @Entity
