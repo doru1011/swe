@@ -80,7 +80,7 @@ import de.shop.util.persistence.File;
 					+ ") ORDER BY k.id ASC"),
 	@NamedQuery(name  = Kunde.FIND_NACHNAMEN_BY_PREFIX,
 	query = "SELECT   DISTINCT k.nachname"
-					+ " FROM  AbstractKunde k "
+					+ " FROM  Kunde k "
 	   	            + " WHERE UPPER(k.nachname) LIKE UPPER(:"
 	   	           + Kunde.PARAM_KUNDE_NACHNAME_PREFIX + ")"),
 	@NamedQuery(name  = Kunde.FIND_KUNDE_BY_ID,
@@ -101,7 +101,7 @@ import de.shop.util.persistence.File;
             + " WHERE  k.id = :" + Kunde.PARAM_KUNDE_ID),
     @NamedQuery(name  = Kunde.FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN,
     query = "SELECT      DISTINCT k"
-		      + " FROM     AbstractKunde k LEFT JOIN FETCH k.bestellungen"
+		      + " FROM     Kunde k LEFT JOIN FETCH k.bestellungen"
 		      + " WHERE    UPPER(k.nachname) = UPPER(:" + Kunde.PARAM_KUNDE_NACHNAME + ")"
 		      + " ORDER BY k.id"),
     @NamedQuery(name  = Kunde.FIND_KUNDE_BY_USERNAME,
