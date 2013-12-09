@@ -121,32 +121,32 @@
 		
 							</r:column>
 							
-							<r:column id="vornameSpalte"
-							             sortBy="#{kunde.vorname}"
-							             sortOrder="#{kundeModel.vornameSortOrder}"
-							             sortMode="single"
-							             filterValue="#{kundeModel.vornameFilter}"
-							             filterExpression="#{fn:containsIgnoreCase(kunde.vorname,kundeModel.vornameFilter)}">
-								<f:facet name="header">
-									<h:panelGroup id="vornameHeader">
-										<h:panelGroup id="vornameHeaderNotEmpty" rendered="#{not empty kundeModel.kunden}">
-											<r:commandLink id="vornameLink"
-											               value="#{msgKv['listKunden.vorname']}"
-											               render="kundenTabelle"
-											               action="#{kundeModel.sortByVorname}"/>
-											<br/>
-											<h:inputText id="vornameFilter"
-											             value="#{kundeModel.vornameFilter}"
-											             size="3"
-											             maxlength="4">
-												<r:ajax event="keyup" render="kundenTabelle"/>
-											</h:inputText>
-										</h:panelGroup>
-										<h:outputText id="vornameHeaderEmpty" value="#{msgKv['listKunden.vorname']}" rendered="#{empty kundeModel.kunden}"/>
-									</h:panelGroup>
-								</f:facet>
-								#{kunde.vorname}
-							</r:column>
+<!-- 							<r:column id="vornameSpalte" -->
+<!-- 							             sortBy="#{kunde.name}" -->
+<!-- 							             sortOrder="#{kundeModel.vornameSortOrder}" -->
+<!-- 							             sortMode="single" -->
+<!-- 							             filterValue="#{kundeModel.vornameFilter}" -->
+<!-- 							             filterExpression="#{fn:containsIgnoreCase(kunde.name,kundeModel.vornameFilter)}"> -->
+<!-- 								<f:facet name="header"> -->
+<!-- 									<h:panelGroup id="vornameHeader"> -->
+<!-- 										<h:panelGroup id="vornameHeaderNotEmpty" rendered="#{not empty kundeModel.kunden}"> -->
+<!-- 											<r:commandLink id="vornameLink" -->
+<!-- 											               value="#{msgKv['listKunden.vorname']}" -->
+<!-- 											               render="kundenTabelle" -->
+<!-- 											               action="#{kundeModel.sortByVorname}"/> -->
+<!-- 											<br/> -->
+<!-- 											<h:inputText id="vornameFilter" -->
+<!-- 											             value="#{kundeModel.vornameFilter}" -->
+<!-- 											             size="3" -->
+<!-- 											             maxlength="4"> -->
+<!-- 												<r:ajax event="keyup" render="kundenTabelle"/> -->
+<!-- 											</h:inputText> -->
+<!-- 										</h:panelGroup> -->
+<!-- 										<h:outputText id="vornameHeaderEmpty" value="#{msgKv['listKunden.vorname']}" rendered="#{empty kundeModel.kunden}"/> -->
+<!-- 									</h:panelGroup> -->
+<!-- 								</f:facet> -->
+<!-- 								#{kunde.name} -->
+<!-- 							</r:column> -->
 			
 							<r:column id="detailsSpalte" rendered="#{not empty kundeModel.kunden}">
 								<h:commandLink id="detailsButton"
