@@ -216,31 +216,31 @@ public class KundeModel implements Serializable {
 		return kunden;
 	}
 //TODO Vorname
-//	public SortOrder getVornameSortOrder() {
-//		return vornameSortOrder;
-//	}
-//
-//	public void setVornameSortOrder(SortOrder vornameSortOrder) {
-//		this.vornameSortOrder = vornameSortOrder;
-//	}
-//
-//	public void sortByVorname() {
-//		vornameSortOrder = vornameSortOrder.equals(SortOrder.ascending)
-//						   ? SortOrder.descending
-//						   : SortOrder.ascending;
-//	} 
-//	
-//	public String getVornameFilter() {
-//		return vornameFilter;
-//	}
-//	
-//	public void setVornameFilter(String vornameFilter) {
-//		this.vornameFilter = vornameFilter;
-//	}
+	public SortOrder getVornameSortOrder() {
+		return vornameSortOrder;
+	}
 
-//	public Privatkunde getNeuerPrivatkunde() {
-//		return neuerPrivatkunde;
-//	}
+	public void setVornameSortOrder(SortOrder vornameSortOrder) {
+		this.vornameSortOrder = vornameSortOrder;
+	}
+
+	public void sortByVorname() {
+		vornameSortOrder = vornameSortOrder.equals(SortOrder.ascending)
+						   ? SortOrder.descending
+						   : SortOrder.ascending;
+	} 
+	
+	public String getVornameFilter() {
+		return vornameFilter;
+	}
+	
+	public void setVornameFilter(String vornameFilter) {
+		this.vornameFilter = vornameFilter;
+	}
+
+	public Kunde getNeuerPrivatkunde() {
+		return neuerKunde;
+	}
 	
 	public String getCaptchaInput() {
 		return captchaInput;

@@ -43,6 +43,9 @@ public class Adresse implements Serializable {
 	public static final int PLZ_LENGTH_MAX = 5;
 	public static final int ORT_LENGTH_MIN = 2;
 	public static final int ORT_LENGTH_MAX = 32;
+	private static final int STRASSE_LENGTH_MIN = 2;
+	private static final int STRASSE_LENGTH_MAX = 32;
+	private static final int HAUSNR_LENGTH_MAX = 4;
 	
 	@Id
 	@GeneratedValue
@@ -70,6 +73,15 @@ public class Adresse implements Serializable {
 	@Size(min = ORT_LENGTH_MIN, max = ORT_LENGTH_MAX, message = "{kundenverwaltung.adresse.ort.length}")
 	private String ort;
 	
+	@Column(length = STRASSE_LENGTH_MAX, nullable = false)
+	@NotNull(message = "{adresse.strasse.notNull}")
+	@Size(min = STRASSE_LENGTH_MIN, max = STRASSE_LENGTH_MAX, message = "{adresse.strasse.length}")
+	private String strasse;
+
+	@Column(length = HAUSNR_LENGTH_MAX)
+	@Size(max = HAUSNR_LENGTH_MAX, message = "{adresse.hausnr.length}")
+	private String hausnr;
+	
 	@Column(nullable = false, updatable = false)
 	@Temporal(TIMESTAMP)
 	@JsonIgnore
@@ -79,6 +91,18 @@ public class Adresse implements Serializable {
 	@Temporal(TIMESTAMP)
 	@JsonIgnore
 	private Date aktualisiert;
+	
+	public Adresse() {
+		super();
+	}
+
+	public Adresse(String plz, String ort, String strasse, String hausnr) {
+		super();
+		this.plz = plz;
+		this.ort = ort;
+		this.strasse = strasse;
+		this.hausnr = hausnr;
+	}
 	
 	@PrePersist
 	private void prePersist() {
@@ -151,9 +175,12 @@ public class Adresse implements Serializable {
 				+ ((aktualisiert == null) ? 0 : aktualisiert.hashCode());
 		result = prime * result
 				+ ((erstellt == null) ? 0 : erstellt.hashCode());
+		result = prime * result + ((hausnr == null) ? 0 : hausnr.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
 		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
 		result = prime * result + ((plz == null) ? 0 : plz.hashCode());
+		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
 		result = prime * result + version;
 		return result;
 	}
@@ -177,10 +204,20 @@ public class Adresse implements Serializable {
 				return false;
 		} else if (!erstellt.equals(other.erstellt))
 			return false;
+		if (hausnr == null) {
+			if (other.hausnr != null)
+				return false;
+		} else if (!hausnr.equals(other.hausnr))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (kunde == null) {
+			if (other.kunde != null)
+				return false;
+		} else if (!kunde.equals(other.kunde))
 			return false;
 		if (ort == null) {
 			if (other.ort != null)
@@ -192,6 +229,11 @@ public class Adresse implements Serializable {
 				return false;
 		} else if (!plz.equals(other.plz))
 			return false;
+		if (strasse == null) {
+			if (other.strasse != null)
+				return false;
+		} else if (!strasse.equals(other.strasse))
+			return false;
 		if (version != other.version)
 			return false;
 		return true;
@@ -202,6 +244,22 @@ public class Adresse implements Serializable {
 		return "Adresse [id=" + id + ", version=" + version + ", plz=" + plz
 				+ ", ort=" + ort + ", erstellt=" + erstellt + ", aktualisiert="
 				+ aktualisiert + "]";
+	}
+
+	public String getStrasse() {
+		return strasse;
+	}
+
+	public void setStrasse(String strasse) {
+		this.strasse = strasse;
+	}
+
+	public String getHausnr() {
+		return hausnr;
+	}
+
+	public void setHausnr(String hausnr) {
+		this.hausnr = hausnr;
 	}
 
 }

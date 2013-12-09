@@ -55,7 +55,11 @@ import org.jboss.logging.Logger;
 	@NamedQuery(name = Artikel.FIND_ARTIKEL_BY_ID,
 						query = "Select a "
 								+ "FROM Artikel a "
-								+ "WHERE a.id = :" + Artikel.PARAM_ID)
+								+ "WHERE a.id = :" + Artikel.PARAM_ID),
+	@NamedQuery(name  = Artikel.FIND_LADENHUETER,
+				   	    query = "SELECT    a"
+				   	            + " FROM   Artikel a"
+				   	             + " WHERE  a NOT IN (SELECT bp.artikel FROM Bestellposition bp)")
 })
 @Cacheable
 
@@ -67,6 +71,7 @@ public class Artikel implements Serializable {
 	public static final String FIND_ALL_ARTIKEL = PREFIX + "findAllArtikel";
 	public static final String FIND_ARTIKEL_BY_NAME = PREFIX + "findArtikelByName";
 	public static final String FIND_ARTIKEL_BY_ID = PREFIX + "findArtikelByID";
+	public static final String FIND_LADENHUETER = PREFIX + "findLadenhueter";
 	public static final String PARAM_NAME = "name";
 	public static final String PARAM_ID = "id";
 	

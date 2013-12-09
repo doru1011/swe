@@ -9,7 +9,7 @@
 	  xmlns:s="http://hs-karlsruhe.de/shop">
 
 	<body>
-
+<!-- //TODO -->
 		<ui:composition template="/WEB-INF/templates/desktop/main.xml">
 			<ui:define name="metadata">
 				<f:event type="preRenderView" listener="#{artikelModel.loadLadenhueter}"/>
@@ -43,7 +43,7 @@
 						<f:facet name="header">
 							#{msg['index.artikelBezeichnung']}
 						</f:facet>
-						#{artikel.bezeichnung}
+						#{artikel.name}
 					</r:column>
 				</r:dataTable>
 				

@@ -36,11 +36,11 @@
 					<h:outputText id="nachnameLabel" value="#{msgKv['viewKundeGET.nachname']}"/>
 					<h:outputText id="nachname" value="#{kundeModel.kunde.nachname}"/>
 					
-<!-- 					<h:outputText id="vornameLabel" value="#{msgKv['viewKundeGET.vorname']}"/> -->
-<!-- 					<h:outputText id="vorname" value="#{kundeModel.kunde.vorname}"/> -->
+					<h:outputText id="vornameLabel" value="#{msgKv['viewKundeGET.vorname']}"/>
+					<h:outputText id="vorname" value="#{kundeModel.kunde.vorname}"/>
 								
-					<h:outputText id="seitLabel" value="#{msgKv['viewKundeGET.seit']}"/>
-					<h:outputText id="seit" value="#{kundeModel.kunde.seit}">
+					<h:outputText id="erstelltLabel" value="#{msgKv['viewKundeGET.erstellt']}"/>
+					<h:outputText id="erstellt" value="#{kundeModel.kunde.erstellt}">
 						<f:convertDateTime type="date" dateStyle="long"/>
 					</h:outputText>
 								
@@ -82,9 +82,9 @@
 <!-- 					<h:outputText id="maennlichLabel" value="#{msgKv['viewKundeGET.geschlecht']}" rendered="#{privatkunde and kunde.geschlecht eq 'MAENNLICH'}"/> -->
 <!-- 					<h:outputText id="maennlich" value="#{msgKv['viewKundeGET.geschlecht.maennlich']}" rendered="#{privatkunde and kunde.geschlecht eq 'MAENNLICH'}"/> -->
 		
-					<h:outputText id="newsletterLabel" value="#{msgKv['viewKundeGET.newsletter']}"/>
-					<h:selectBooleanCheckbox id="newsletter" value="#{kundeModel.kunde.newsletter}" disabled="true" readonly="true"/>
-				</h:panelGrid>
+<!-- 					<h:outputText id="newsletterLabel" value="#{msgKv['viewKundeGET.newsletter']}"/> -->
+<!-- <!-- 					<h:selectBooleanCheckbox id="newsletter" value="#{kundeModel.kunde.newsletter}" disabled="true" readonly="true"/> --> -->
+<!-- 				</h:panelGrid> -->
 							
 				<h:form id="buttons" rendered="#{not empty kundeModel.kunde}">
 					<h:commandLink id="updateButtonPrivatkunde"

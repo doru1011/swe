@@ -6,6 +6,7 @@ import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
+import static javax.persistence.TemporalType.DATE;
 import static de.shop.util.Constants.MIN_ID;
 
 import java.io.Serializable;
@@ -46,6 +47,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -165,8 +167,10 @@ public class Kunde implements Serializable {
 	public static final String NACHNAME_PATTERN = NACHNAME_PREFIX + NAME_PATTERN + "(-" + NAME_PATTERN + ")?";
 	public static final int NACHNAME_LENGTH_MIN = 2;
 	public static final int NACHNAME_LENGTH_MAX = 32;
+	private static final int VORNAME_LENGTH_MAX = 32;
 	public static final int EMAIL_LENGTH_MAX = 128;
 	public static final int PASSWORD_LENGTH_MAX = 256;
+	
 		
 	@Column(nullable = false, updatable = false)
 	@Pattern(regexp = USERNAME_PATTERN, message = "{kunde.username.pattern}" )
@@ -185,6 +189,11 @@ public class Kunde implements Serializable {
 	@Transient
 	@Size(max = PASSWORD_LENGTH_MAX, message = "{kundenverwaltung.kunde.password.length}")
 	private String passwordWdh;
+	
+	@Basic(optional = false)
+	@Temporal(DATE)
+	@Past(message = "{kunde.seit.past}")
+	private Date seit;
 
 	@Version
 	@Basic(optional = false)
@@ -195,6 +204,10 @@ public class Kunde implements Serializable {
 	@Size(min = NACHNAME_LENGTH_MIN, max = NACHNAME_LENGTH_MAX, message = "{kundenverwaltung.kunde.nachname.length}")
 	@Pattern(regexp = NACHNAME_PATTERN, message = "{kundenverwaltung.kunde.nachname.pattern}")
 	private String nachname;
+	
+	@Column(length = VORNAME_LENGTH_MAX)
+	@Size(max = VORNAME_LENGTH_MAX, message = "{kunde.vorname.length}")
+	private String vorname = "";
 	
 	@Column(length = EMAIL_LENGTH_MAX, nullable = false, unique = true)
 	@Email(message = "{kundenverwaltung.kunde.email.pattern}")
@@ -224,6 +237,10 @@ public class Kunde implements Serializable {
 	@Past(message = "{kundenverwaltung.kunde.aktualisiert.past}")
 	private Date aktualisiert;
 	
+	@Transient
+	@AssertTrue(message = "{kunde.agb}")
+	private boolean agbAkzeptiert;
+	
 	@OneToOne(mappedBy = "kunde", cascade = { PERSIST, REMOVE })
 	@Valid
 //	@NotNull(message = "{kundenverwaltung.kunde.adresse.notNull}")
@@ -237,6 +254,8 @@ public class Kunde implements Serializable {
 	
 	@Transient
 	private URI bestellungenUri;
+	
+	
 	
 	
 	@PrePersist
@@ -272,6 +291,13 @@ public class Kunde implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String getVorname() {
+		return vorname;
+	}
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
 	}
 
 	public String getPassword() {
@@ -370,6 +396,10 @@ public class Kunde implements Serializable {
 	public void setErstellt(Date erstellt) {
 		this.erstellt = erstellt;
 	}
+	
+	public boolean isAgbAkzeptiert() {
+		return agbAkzeptiert;
+	}
 
 	public List<Bestellung> getBestellungen() {
 		return bestellungen;
@@ -396,10 +426,12 @@ public class Kunde implements Serializable {
 		version = k.version;
 		username = k.username;
 		nachname = k.nachname;
+		vorname = k.vorname;
 		email = k.email;
 		password = k.password;
 		passwordWdh = k.password;
 		erstellt = k.erstellt;
+		agbAkzeptiert = k.agbAkzeptiert;
 	}
 
 	
@@ -427,7 +459,8 @@ public class Kunde implements Serializable {
 	public String toString() {
 		return "Kunde [username=" + username + ", id=" + id + ", password="
 				+ password + ", passwordWdh=" + passwordWdh + ", version="
-				+ version + ", nachname=" + nachname + ", email=" + email
+				+ version + ", nachname=" + nachname + ", vorname=" + vorname + ", seit="
+				+", email=" + email
 				+ ", erstellt=" + erstellt
 				+ ", aktualisiert=" + aktualisiert + ", bestellungenUri="
 				+ bestellungenUri + "]";
@@ -447,6 +480,8 @@ public class Kunde implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((nachname == null) ? 0 : nachname.hashCode());
+		result = prime * result
+				+ ((vorname == null) ? 0 : vorname.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result
@@ -496,6 +531,11 @@ public class Kunde implements Serializable {
 			if (other.nachname != null)
 				return false;
 		} else if (!nachname.equals(other.nachname))
+			return false;
+		if (vorname == null) {
+			if (other.vorname != null)
+				return false;
+		} else if (!vorname.equals(other.vorname))
 			return false;
 		if (password == null) {
 			if (other.password != null)

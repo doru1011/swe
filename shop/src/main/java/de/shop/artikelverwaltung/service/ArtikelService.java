@@ -105,16 +105,7 @@ public class ArtikelService implements Serializable {
 		return em.createQuery(criteriaQuery)
 				 .getResultList();
 	}
-	public List<Artikel> findArtikelByBezeichnung(String bezeichnung) {
-		if (Strings.isNullOrEmpty(bezeichnung)) {
-			return findAllArtikel();
-		}
-		
-		return em.createNamedQuery(Artikel.FIND_ARTIKEL_BY_NAME, Artikel.class)
-				 .setParameter(Artikel.PARAM_NAME, "%" + bezeichnung + "%")
-				 .getResultList();
-		
-	}
+
 	
 		public Artikel createArtikel(Artikel artikel) {
 			if (artikel == null) {
@@ -161,6 +152,16 @@ public class ArtikelService implements Serializable {
 						
 			artikel = em.merge(artikel);
 			return artikel;
+		}
+		/**
+		 * Liste der wenig bestellten Artikel ermitteln
+		 * @param anzahl Obergrenze fuer die maximale Anzahl der Bestellungen
+		 * @return Liste der gefundenen Artikel
+		 */
+		public List<Artikel> ladenhueter(int anzahl) {
+			return em.createNamedQuery(Artikel.FIND_LADENHUETER, Artikel.class)
+					 .setMaxResults(anzahl)
+					 .getResultList();
 		}
 
 	}

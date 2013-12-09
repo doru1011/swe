@@ -24,13 +24,13 @@
 					<h:outputText id="nachnameLabel" value="#{msgKv['viewKundePopup.nachname']}"/>
 					<h:outputText id="nachname" value="#{kunde.nachname}"/>
 		
-<!-- 					<h:outputText id="vornameLabel" value="#{msgKv['viewKundePopup.vorname']}"/> -->
-<!-- 					<h:outputText id="vorname" value="#{kunde.vorname}"/> -->
+					<h:outputText id="vornameLabel" value="#{msgKv['viewKundePopup.vorname']}"/>
+					<h:outputText id="vorname" value="#{kunde.vorname}"/>
 					
-<!-- 					<h:outputText id="seitLabel" value="#{msgKv['viewKundePopup.seit']}"/> -->
-<!-- 					<h:outputText id="seit" value="#{kunde.seit}"> -->
-<!-- 						<f:convertDateTime type="date" dateStyle="long"/> -->
-<!-- 					</h:outputText> -->
+					<h:outputText id="erstelltLabel" value="#{msgKv['viewKundePopup.erstellt']}"/>
+					<h:outputText id="erstellt" value="#{kunde.erstellt}">
+						<f:convertDateTime type="date" dateStyle="long"/>
+					</h:outputText>
 					
 <!-- 					<h:outputText id="umsatzLabel" value="#{msgKv['viewKundePopup.umsatz']}"/> -->
 <!-- 					<h:outputText id="umsatz" value="#{kunde.umsatz}"> -->
@@ -149,10 +149,10 @@
 							#{msgKv['viewKundePopup.artikel.id']}
 						</r:column>
 						<r:column id="bezeichnungSpalte">
-							#{msgKv['viewKundePopup.artikel.bezeichnung']}
+							#{msgKv['viewKundePopup.artikel.name']}
 						</r:column>
 						<r:column id="anzahlSpalte">
-							#{msgKv['viewKundePopup.artikel.anzahl']}
+							#{msgKv['viewKundePopup.artikel.menge']}
 						</r:column>
 					</r:columnGroup>
 				</f:facet>
@@ -175,7 +175,7 @@
 					</r:column>
 		
 					<r:column id="bezeichnungSpalteSub">
-						#{pos.artikel.bezeichnung}
+						#{pos.artikel.name}
 					</r:column>
 		
 					<r:column id="anzahlSpalteSub">
