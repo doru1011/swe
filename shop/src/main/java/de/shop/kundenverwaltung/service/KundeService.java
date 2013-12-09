@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -371,6 +372,17 @@ public class KundeService implements Serializable {
 		}
 
 		em.remove(kunde);
+	}
+	
+	/**
+	 * Kunden suchen, die seit einem bestimmten Datum Kunde sind.
+	 * @param seit Das Datum
+	 * @return Liste der gefundenen Kunden
+	 */
+	public List<Kunde> findKundenBySeit(Date seit) {
+		return em.createNamedQuery(Kunde.FIND_KUNDEN_BY_DATE, Kunde.class)
+				 .setParameter(Kunde.PARAM_KUNDE_SEIT, seit)
+				 .getResultList();
 	}
 	
 	public Kunde findKundeByBestellungId(Long bestellungId) {

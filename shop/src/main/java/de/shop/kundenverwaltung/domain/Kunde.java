@@ -119,7 +119,11 @@ import de.shop.util.persistence.File;
 				        + " FROM  Kunde k"
 	            		+ " WHERE CONCAT('', k.id) LIKE :" + Kunde.PARAM_USERNAME_PREFIX),
     @NamedQuery(name = Kunde.FIND_KUNDE_BY_BESTELLUNG_ID,
-    		query = "SELECT k FROM Kunde k JOIN k.bestellungen b WHERE b.id = :" + Kunde.PARAM_BESTELLUNG_ID)
+    		query = "SELECT k FROM Kunde k JOIN k.bestellungen b WHERE b.id = :" + Kunde.PARAM_BESTELLUNG_ID),
+    		@NamedQuery(name = Kunde.FIND_KUNDEN_BY_DATE,
+			    query = "SELECT   k"
+			            + " FROM  Kunde k"
+			    		+ " WHERE k.seit = :" + Kunde.PARAM_KUNDE_SEIT)
 })
 @NamedEntityGraph(name = Kunde.GRAPH_BESTELLUNGEN,
 					  attributeNodes = @NamedAttributeNode("bestellungen"))
@@ -148,8 +152,10 @@ public class Kunde implements Serializable {
 	public static final String FIND_KUNDE_BY_BESTELLUNG_ID = PREFIX + "findKundeByBestellungId";
 	public static final String FIND_USERNAME_BY_USERNAME_PREFIX = PREFIX + "findKundeByUsernamePrefix";
 	public static final String FIND_NACHNAMEN_BY_PREFIX = PREFIX + "findNachnamenByPrefix";
+	public static final String FIND_KUNDEN_BY_DATE = PREFIX + "findKundenByDate";
 	
 	public static final String PARAM_KUNDE_NACHNAME = "nachname";
+	public static final String PARAM_KUNDE_SEIT = "seit";
 	public static final String PARAM_KUNDE_ID = "id";
 	public static final String PARAM_KUNDE_EMAIL = "email";
 	public static final String PARAM_KUNDE_USERNAME = "username";
@@ -284,6 +290,17 @@ public class Kunde implements Serializable {
 		passwordWdh = password;
 	}
 	
+	public Kunde() {
+		super();
+	}
+
+	public Kunde(String nachname, String vorname, String email, Date seit) {
+		super();
+		this.nachname = nachname;
+		this.vorname = vorname;
+		this.email = email;
+		this.seit = seit == null ? null : (Date) seit.clone();
+	}
 	
 	public String getUsername() {
 		return username;
@@ -400,6 +417,14 @@ public class Kunde implements Serializable {
 	public boolean isAgbAkzeptiert() {
 		return agbAkzeptiert;
 	}
+	public void setAgbAkzeptiert(boolean agbAkzeptiert) {
+		this.agbAkzeptiert = agbAkzeptiert;
+		}
+	
+	public Date getSeit() {
+		return seit == null ? null : (Date) seit.clone();
+	}
+
 
 	public List<Bestellung> getBestellungen() {
 		return bestellungen;
@@ -432,6 +457,7 @@ public class Kunde implements Serializable {
 		passwordWdh = k.password;
 		erstellt = k.erstellt;
 		agbAkzeptiert = k.agbAkzeptiert;
+		seit = k.seit;
 	}
 
 	

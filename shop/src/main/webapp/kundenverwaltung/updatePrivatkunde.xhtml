@@ -57,13 +57,13 @@
 						<h:inputText id="vorname" value="#{kunde.vorname}" valueChangeListener="#{kundeModel.geaendert}"/>
 						<f:verbatim/>
 						
-						<h:outputLabel id="kategorieLabel" value="#{msgKv['updatePrivatkunde.kategorie']}" for="kategorie"/>
-						<r:inputNumberSpinner id="kategorie"
-						                      value="#{kunde.kategorie}"
-						                      minValue="0" maxValue="5"
-						                      inputSize="1"
-						                      valueChangeListener="#{kundeModel.geaendert}"/>
-						<f:verbatim/>
+<!-- 						<h:outputLabel id="kategorieLabel" value="#{msgKv['updatePrivatkunde.kategorie']}" for="kategorie"/> -->
+<!-- 						<r:inputNumberSpinner id="kategorie" -->
+<!-- 						                      value="#{kunde.kategorie}" -->
+<!-- 						                      minValue="0" maxValue="5" -->
+<!-- 						                      inputSize="1" -->
+<!-- 						                      valueChangeListener="#{kundeModel.geaendert}"/> -->
+<!-- 						<f:verbatim/> -->
 						
 						<h:outputLabel id="seitLabel"
 						               for="seit"
@@ -79,61 +79,61 @@
 						</r:calendar>
 						<r:messages id="fehlermeldungSeit" for="seit"/>
 						
-						<h:outputLabel id="umsatzLabel" for="umsatz" value="#{msgKv['updatePrivatkunde.umsatz']}"/>
-						<h:inputText id="umsatz"
-						             value="#{kunde.umsatz}"
-						             converterMessage="#{msgKv['updatePrivatkunde.umsatz.convert']}"
-						             valueChangeListener="#{kundeModel.geaendert}">
-						    <!--
-							<f:convertNumber type="currency"
-							                 currencyCode="EUR"
-							                 maxFractionDigits="2"/>
-							-->
-							<f:ajax event="blur" render="updateKundeForm:fehlermeldungenUmsatz"/>
-						</h:inputText>
-						<r:messages id="fehlermeldungenUmsatz" for="umsatz"/>
+<!-- 						<h:outputLabel id="umsatzLabel" for="umsatz" value="#{msgKv['updatePrivatkunde.umsatz']}"/> -->
+<!-- 						<h:inputText id="umsatz" -->
+<!-- 						             value="#{kunde.umsatz}" -->
+<!-- 						             converterMessage="#{msgKv['updatePrivatkunde.umsatz.convert']}" -->
+<!-- 						             valueChangeListener="#{kundeModel.geaendert}"> -->
+<!-- 						   
+<!-- 							<f:convertNumber type="currency" -->
+<!-- 							                 currencyCode="EUR" -->
+<!-- 							                 maxFractionDigits="2"/> -->
+<!-- 							--> -->
+<!-- 							<f:ajax event="blur" render="updateKundeForm:fehlermeldungenUmsatz"/> -->
+<!-- 						</h:inputText> -->
+<!-- 						<r:messages id="fehlermeldungenUmsatz" for="umsatz"/> -->
 						
-						<h:outputLabel id="rabattLabel" for="rabatt" value="#{msgKv['updatePrivatkunde.rabatt']}"/>
-						<h:inputText id="rabatt"
-						             value="#{kunde.rabatt}"
-						             converterMessage="#{msgKv['updatePrivatkunde.rabatt.convert']}"
-						             valueChangeListener="#{kundeModel.geaendert}">
-							<f:convertNumber type="percent"
-		                                     maxFractionDigits="2"
-		                                     maxIntegerDigits="2"/>
-							<f:ajax event="blur" render="updateKundeForm:fehlermeldungenRabatt"/>
-						</h:inputText>
-						<r:messages id="fehlermeldungenRabatt" for="rabatt"/>
+<!-- 						<h:outputLabel id="rabattLabel" for="rabatt" value="#{msgKv['updatePrivatkunde.rabatt']}"/> -->
+<!-- 						<h:inputText id="rabatt" -->
+<!-- 						             value="#{kunde.rabatt}" -->
+<!-- 						             converterMessage="#{msgKv['updatePrivatkunde.rabatt.convert']}" -->
+<!-- 						             valueChangeListener="#{kundeModel.geaendert}"> -->
+<!-- 							<f:convertNumber type="percent" -->
+<!-- 		                                     maxFractionDigits="2" -->
+<!-- 		                                     maxIntegerDigits="2"/> -->
+<!-- 							<f:ajax event="blur" render="updateKundeForm:fehlermeldungenRabatt"/> -->
+<!-- 						</h:inputText> -->
+<!-- 						<r:messages id="fehlermeldungenRabatt" for="rabatt"/> -->
 			
-						<h:outputLabel id="familienstandLabel" for="familienstandMenu" value="#{msgKv['updatePrivatkunde.familienstand']}"/>
-						<r:select id="familienstandMenu"
-						          enableManualInput="true"
-						          defaultLabel="#{msgKv['updatePrivatkunde.familienstand']}"
-						          value="#{kunde.familienstand}"
-						          valueChangeListener="#{kundeModel.geaendert}">
-							<f:selectItem id="ledig" itemValue="LEDIG" itemLabel="#{msgKv['updatePrivatkunde.familienstand.ledig']}"/>
-							<f:selectItem id="verheiratet" itemValue="VERHEIRATET" itemLabel="#{msgKv['updatePrivatkunde.familienstand.verheiratet']}"/>
-							<f:selectItem id="geschieden" itemValue="GESCHIEDEN" itemLabel="#{msgKv['updatePrivatkunde.familienstand.geschieden']}"/>
-							<f:selectItem id="verwitwet" itemValue="VERWITWET" itemLabel="#{msgKv['updatePrivatkunde.familienstand.verwitwet']}"/>
-						</r:select>
-						<f:verbatim/>
+<!-- 						<h:outputLabel id="familienstandLabel" for="familienstandMenu" value="#{msgKv['updatePrivatkunde.familienstand']}"/> -->
+<!-- 						<r:select id="familienstandMenu" -->
+<!-- 						          enableManualInput="true" -->
+<!-- 						          defaultLabel="#{msgKv['updatePrivatkunde.familienstand']}" -->
+<!-- 						          value="#{kunde.familienstand}" -->
+<!-- 						          valueChangeListener="#{kundeModel.geaendert}"> -->
+<!-- 							<f:selectItem id="ledig" itemValue="LEDIG" itemLabel="#{msgKv['updatePrivatkunde.familienstand.ledig']}"/> -->
+<!-- 							<f:selectItem id="verheiratet" itemValue="VERHEIRATET" itemLabel="#{msgKv['updatePrivatkunde.familienstand.verheiratet']}"/> -->
+<!-- 							<f:selectItem id="geschieden" itemValue="GESCHIEDEN" itemLabel="#{msgKv['updatePrivatkunde.familienstand.geschieden']}"/> -->
+<!-- 							<f:selectItem id="verwitwet" itemValue="VERWITWET" itemLabel="#{msgKv['updatePrivatkunde.familienstand.verwitwet']}"/> -->
+<!-- 						</r:select> -->
+<!-- 						<f:verbatim/> -->
 		
-						<h:outputLabel id="newsletterLabel" value="#{msgKv['updatePrivatkunde.newsletter']}"/>
-						<h:selectBooleanCheckbox id="newsletter" value="#{kunde.newsletter}" valueChangeListener="#{kundeModel.geaendert}"/>
-						<f:verbatim/>
+<!-- 						<h:outputLabel id="newsletterLabel" value="#{msgKv['updatePrivatkunde.newsletter']}"/> -->
+<!-- 						<h:selectBooleanCheckbox id="newsletter" value="#{kunde.newsletter}" valueChangeListener="#{kundeModel.geaendert}"/> -->
+<!-- 						<f:verbatim/> -->
 		
-						<h:outputText id="hobbiesLabel" value="#{msgKv['updatePrivatkunde.hobbies']}"/>
-						<h:selectManyCheckbox value="#{kundeModel.hobbies}"
-						                      layout="pageDirection"
-						                      valueChangeListener="#{kundeModel.geaendert}">
-							<f:selectItem itemValue="SPORT"
-										  itemLabel="#{msgKv['updatePrivatkunde.sport']}"/>
-							<f:selectItem itemValue="LESEN" 
-										  itemLabel="#{msgKv['updatePrivatkunde.lesen']}"/>
-							<f:selectItem itemValue="REISEN" 
-										  itemLabel="#{msgKv['updatePrivatkunde.reisen']}"/>
-						</h:selectManyCheckbox>
-						<f:verbatim/>
+<!-- 						<h:outputText id="hobbiesLabel" value="#{msgKv['updatePrivatkunde.hobbies']}"/> -->
+<!-- 						<h:selectManyCheckbox value="#{kundeModel.hobbies}" -->
+<!-- 						                      layout="pageDirection" -->
+<!-- 						                      valueChangeListener="#{kundeModel.geaendert}"> -->
+<!-- 							<f:selectItem itemValue="SPORT" -->
+<!-- 										  itemLabel="#{msgKv['updatePrivatkunde.sport']}"/> -->
+<!-- 							<f:selectItem itemValue="LESEN"  -->
+<!-- 										  itemLabel="#{msgKv['updatePrivatkunde.lesen']}"/> -->
+<!-- 							<f:selectItem itemValue="REISEN"  -->
+<!-- 										  itemLabel="#{msgKv['updatePrivatkunde.reisen']}"/> -->
+<!-- 						</h:selectManyCheckbox> -->
+<!-- 						<f:verbatim/> -->
 						
 						<h:outputLabel id="emailLabel" for="email" value="#{msgKv['updatePrivatkunde.email']}"/>
 						<h:inputText id="email" value="#{kunde.email}" valueChangeListener="#{kundeModel.geaendert}">
@@ -143,18 +143,18 @@
 						<r:messages id="fehlermeldungenEmail" for="email"/>
 					</h:panelGrid>
 					
-					<h:panelGrid id="bemerkungenGrid">
-						<h:outputLabel id="bemerkungenLabel" value="#{msgKv['updatePrivatkunde.bemerkungen']}"
-						               for="bemerkungen"
-						               class="kundendetailsBezeichner"/>
-						<r:messages id="fehlermeldungBemerkungen" for="bemerkungen"/>
-						<r:editor id="bemerkungen"
-						             value="#{kunde.bemerkungen}"
-						             valueChangeListener="#{kundeModel.geaendert}"
-							         toolbar="full"
-							         width="870"
-							         height="80"/>
-					</h:panelGrid>
+<!-- 					<h:panelGrid id="bemerkungenGrid"> -->
+<!-- 						<h:outputLabel id="bemerkungenLabel" value="#{msgKv['updatePrivatkunde.bemerkungen']}" -->
+<!-- 						               for="bemerkungen" -->
+<!-- 						               class="kundendetailsBezeichner"/> -->
+<!-- 						<r:messages id="fehlermeldungBemerkungen" for="bemerkungen"/> -->
+<!-- 						<r:editor id="bemerkungen" -->
+<!-- 						             value="#{kunde.bemerkungen}" -->
+<!-- 						             valueChangeListener="#{kundeModel.geaendert}" -->
+<!-- 							         toolbar="full" -->
+<!-- 							         width="870" -->
+<!-- 							         height="80"/> -->
+<!-- 					</h:panelGrid> -->
 		
 					<p id="buttons">
 						<h:commandButton id="button" action="#{kundeModel.update}" value="#{msgKv['updatePrivatkunde.submit']}"/>

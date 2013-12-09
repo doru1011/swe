@@ -241,9 +241,10 @@ public class Adresse implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Adresse [id=" + id + ", version=" + version + ", plz=" + plz
-				+ ", ort=" + ort + ", erstellt=" + erstellt + ", aktualisiert="
-				+ aktualisiert + "]";
+		return "Adresse [id=" + id + ", kunde=" + kunde + ", version="
+				+ version + ", plz=" + plz + ", ort=" + ort + ", strasse="
+				+ strasse + ", hausnr=" + hausnr + ", erstellt=" + erstellt
+				+ ", aktualisiert=" + aktualisiert + "]";
 	}
 
 	public String getStrasse() {

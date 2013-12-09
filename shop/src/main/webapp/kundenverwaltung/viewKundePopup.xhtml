@@ -27,8 +27,8 @@
 					<h:outputText id="vornameLabel" value="#{msgKv['viewKundePopup.vorname']}"/>
 					<h:outputText id="vorname" value="#{kunde.vorname}"/>
 					
-					<h:outputText id="erstelltLabel" value="#{msgKv['viewKundePopup.erstellt']}"/>
-					<h:outputText id="erstellt" value="#{kunde.erstellt}">
+					<h:outputText id="seitLabel" value="#{msgKv['viewKundePopup.seit']}"/>
+					<h:outputText id="seit" value="#{kunde.seit}">
 						<f:convertDateTime type="date" dateStyle="long"/>
 					</h:outputText>
 					
@@ -41,11 +41,11 @@
 					<h:outputText id="emailLabel" value="#{msgKv['viewKundePopup.email']}"/>
 					<h:outputText id="email" value="#{kunde.email}"/>
 	
-<!-- 					<h:outputText id="firmenkundeLabel" value="#{msgKv['viewKundePopup.kundenart']}" rendered="#{kunde.class.simpleName eq 'Firmenkunde'}"/> -->
-<!-- 					<h:outputText id="firmenkunde" value="#{msgKv['viewKundePopup.firmenkunde']}" rendered="#{kunde.class.simpleName eq 'Firmenkunde'}"/> -->
+					<h:outputText id="firmenkundeLabel" value="#{msgKv['viewKundePopup.kundenart']}" rendered="#{kunde.class.simpleName eq 'Firmenkunde'}"/>
+					<h:outputText id="firmenkunde" value="#{msgKv['viewKundePopup.firmenkunde']}" rendered="#{kunde.class.simpleName eq 'Firmenkunde'}"/>
 		
-<!-- 					<h:outputText id="privatkundeLabel" value="#{msgKv['viewKundePopup.kundenart']}" rendered="#{kunde.class.simpleName eq 'Privatkunde'}"/> -->
-<!-- 					<h:outputText id="privatkunde" value="#{msgKv['viewKundePopup.privatkunde']}" rendered="#{kunde.class.simpleName eq 'Privatkunde'}"/> -->
+					<h:outputText id="privatkundeLabel" value="#{msgKv['viewKundePopup.kundenart']}" rendered="#{kunde.class.simpleName eq 'Privatkunde'}"/>
+					<h:outputText id="privatkunde" value="#{msgKv['viewKundePopup.privatkunde']}" rendered="#{kunde.class.simpleName eq 'Privatkunde'}"/>
 					
 <!-- 					<h:outputText id="rabattLabel" value="#{msgKv['viewKundePopup.rabatt']}"/> -->
 <!-- 					<h:outputText id="rabatt" value="#{kunde.rabatt}"> -->
@@ -64,11 +64,11 @@
 <!-- 					<h:outputText id="verwitwetLabel" value="#{msgKv['viewKundePopup.familienstand']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.familienstand eq 'VERWITWET'}"/> -->
 <!-- 					<h:outputText id="verwitwet" value="#{msgKv['viewKundePopup.familienstand.verwitwet']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.familienstand eq 'VERWITWET'}"/> -->
 		
-					<h:outputText id="weiblichLabel" value="#{msgKv['viewKundePopup.geschlecht']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'WEIBLICH'}"/>
-					<h:outputText id="weiblich" value="#{msgKv['viewKundePopup.geschlecht.weiblich']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'WEIBLICH'}"/>
+<!-- 					<h:outputText id="weiblichLabel" value="#{msgKv['viewKundePopup.geschlecht']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'WEIBLICH'}"/> -->
+<!-- 					<h:outputText id="weiblich" value="#{msgKv['viewKundePopup.geschlecht.weiblich']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'WEIBLICH'}"/> -->
 		
-					<h:outputText id="maennlichLabel" value="#{msgKv['viewKundePopup.geschlecht']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'MAENNLICH'}"/>
-					<h:outputText id="maennlich" value="#{msgKv['viewKundePopup.geschlecht.maennlich']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'MAENNLICH'}"/>
+<!-- 					<h:outputText id="maennlichLabel" value="#{msgKv['viewKundePopup.geschlecht']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'MAENNLICH'}"/> -->
+<!-- 					<h:outputText id="maennlich" value="#{msgKv['viewKundePopup.geschlecht.maennlich']}" rendered="#{kunde.class.simpleName eq 'Privatkunde' and kunde.geschlecht eq 'MAENNLICH'}"/> -->
 	
 <!-- 					<h:outputText id="newsletterLabel" value="#{msgKv['viewKundePopup.newsletter']}"/> -->
 <!-- 					<h:selectBooleanCheckbox id="newsletter" value="#{kunde.newsletter}" disabled="true" readonly="true"/> -->
@@ -86,9 +86,9 @@
 <!-- 						<f:selectItem itemValue="REISEN"  -->
 <!-- 									  itemLabel="#{msgKv['viewKundePopup.hobbies.reisen']}"/> -->
 <!-- 					</h:selectManyCheckbox> -->
-<!-- 				</h:panelGrid> -->
-<!-- 			</r:panel> -->
-<!-- 		</r:tab> -->
+				</h:panelGrid>
+			</r:panel>
+		</r:tab>
 		
 		<r:tab id="fileTab" rendered="#{not empty kunde.file}">
 			<f:facet name="header">
@@ -152,15 +152,15 @@
 							#{msgKv['viewKundePopup.artikel.name']}
 						</r:column>
 						<r:column id="anzahlSpalte">
-							#{msgKv['viewKundePopup.artikel.menge']}
+							#{msgKv['viewKundePopup.artikel.bezeichnung']}
 						</r:column>
 					</r:columnGroup>
 				</f:facet>
 				
 				<r:column id="togglerSpalte" colspan="3">
 					<r:collapsibleSubTableToggler id="subTableToggler" for="positionenSubtable"
-					                              collapsedLabel="#{msgKv['viewKundePopup.bestellung']} #{bestellung.id} : #{bestellung.getErzeugt('yyyy-MM-dd')}"
-					                              expandedLabel="#{msgKv['viewKundePopup.bestellung']} #{bestellung.id} : #{bestellung.getErzeugt('yyyy-MM-dd')}"/>
+					                              collapsedLabel="#{msgKv['viewKundePopup.bestellung']} #{bestellung.id} : #{bestellung.getErstellt()}"
+					                              expandedLabel="#{msgKv['viewKundePopup.bestellung']} #{bestellung.id} : #{bestellung.getErstellt()}"/>
 				</r:column>
 				
 				<r:collapsibleSubTable id="positionenSubtable"
@@ -179,7 +179,7 @@
 					</r:column>
 		
 					<r:column id="anzahlSpalteSub">
-						#{pos.anzahl}
+						#{pos.menge}
 					</r:column>
 				</r:collapsibleSubTable>
 			</r:dataTable>

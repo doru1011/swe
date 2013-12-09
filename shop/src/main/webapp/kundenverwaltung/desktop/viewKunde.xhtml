@@ -62,8 +62,8 @@
 		
 					<r:outputPanel id="gesuchterKundePanel">
 						<c:set var="kunde" value="#{kundeModel.kunde}" scope="view"/>
-<!-- 						<c:set var="privatkunde" value="#{kunde.class.simpleName eq 'Privatkunde'}" scope="view"/> -->
-<!-- 						<c:set var="firmenkunde" value="#{kunde.class.simpleName eq 'Firmenkunde'}" scope="view"/> -->
+						<c:set var="privatkunde" value="#{kunde.class.simpleName eq 'Privatkunde'}" scope="view"/>
+						<c:set var="firmenkunde" value="#{kunde.class.simpleName eq 'Firmenkunde'}" scope="view"/>
 						
 						<r:tabPanel id="tabPanel" switchType="client" rendered="#{not empty kunde}">
 							<r:tab id="stammdatenTab">
@@ -211,12 +211,12 @@
 									<c:set var="filename" value="#{kundeModel.getFilename(file)}" scope="view"/>
 									<c:choose>
 									<c:when test="${multimediaType eq 'IMAGE'}">
-									<h:graphicImage id="�" value="/../filesDb.war/shop/#{filename}"/>
+									<h:graphicImage id="…" value="/../filesDb.war/shop/#{filename}"/>
 									</c:when>
 									<c:when test="${multimediaType eq 'VIDEO'}">
-									<h:outputScript id="�" library="js" name="mediaelement-and-player.min.js"/>
-									<h:outputStylesheet id="�" library="css" name="mediaelementplayer.css"/>
-									<video id="�" controls="controls" width="640" height="480">
+									<h:outputScript id="…" library="js" name="mediaelement-and-player.min.js"/>
+									<h:outputStylesheet id="…" library="css" name="mediaelementplayer.css"/>
+									<video id="…" controls="controls" width="640" height="480">
 									<source src="/../filesDb.war/shop/#{filename}"
 									type="#{file.mimeType.toString()}"/>
 									</video>	
