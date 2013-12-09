@@ -105,6 +105,16 @@ public class ArtikelService implements Serializable {
 		return em.createQuery(criteriaQuery)
 				 .getResultList();
 	}
+	public List<Artikel> findArtikelByBezeichnung(String bezeichnung) {
+		if (Strings.isNullOrEmpty(bezeichnung)) {
+			return findAllArtikel();
+		}
+		
+		return em.createNamedQuery(Artikel.FIND_ARTIKEL_BY_NAME, Artikel.class)
+				 .setParameter(Artikel.PARAM_NAME, "%" + bezeichnung + "%")
+				 .getResultList();
+		
+	}
 	
 		public Artikel createArtikel(Artikel artikel) {
 			if (artikel == null) {
