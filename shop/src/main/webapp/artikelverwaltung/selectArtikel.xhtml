@@ -21,7 +21,7 @@
 						<f:selectItems id="artikelItems" values="#{verfuegbareArtikel}"/>
 						-->
 						<c:forEach var="artikel" items="#{verfuegbareArtikel}">
-							<f:selectItem id="artikelItem#{artikel.id}" itemLabel="#{artikel.bezeichnung}" itemValue="#{artikel.id}"/>
+							<f:selectItem id="artikelItem#{artikel.id}" itemLabel="#{artikel.name}" itemValue="#{artikel.id}"/>
 						</c:forEach>
 					</r:select>
 		
