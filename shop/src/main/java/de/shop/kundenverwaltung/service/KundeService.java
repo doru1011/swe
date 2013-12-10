@@ -158,21 +158,21 @@ public class KundeService implements Serializable {
 		return kunden;
 	}
 	
-	public List<Kunde> findAllKunden(FetchType fetch) {
-		final TypedQuery<Kunde> query = em.createNamedQuery(Kunde.FIND_KUNDEN, Kunde.class);
-		switch (fetch) {
-			case NUR_KUNDE:
-				break;
-			case MIT_BESTELLUNGEN:
-				query.setHint("javax.persistence.loadgraph", Kunde.GRAPH_BESTELLUNGEN);
-				break;
-			default:
-				break;
-		}
-		
-		final List<Kunde> kunden = query.getResultList();
-		return kunden;
-	}
+//	public List<Kunde> findAllKunden(FetchType fetch) {
+//		final TypedQuery<Kunde> query = em.createNamedQuery(Kunde.FIND_KUNDEN, Kunde.class);
+//		switch (fetch) {
+//			case NUR_KUNDE:
+//				break;
+//			case MIT_BESTELLUNGEN:
+//				query.setHint("javax.persistence.loadgraph", Kunde.GRAPH_BESTELLUNGEN);
+//				break;
+//			default:
+//				break;
+//		}
+//		
+//		final List<Kunde> kunden = query.getResultList();
+//		return kunden;
+//	}
 
 	public Kunde findKundeByEmail(String email) {
 		try {

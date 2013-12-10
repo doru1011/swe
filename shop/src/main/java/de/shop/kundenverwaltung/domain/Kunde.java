@@ -288,6 +288,7 @@ public class Kunde implements Serializable {
 	@PostLoad
 	protected void postLoad() {
 		passwordWdh = password;
+		agbAkzeptiert = true;
 	}
 	
 	public Kunde() {

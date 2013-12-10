@@ -49,6 +49,7 @@ import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.kundenverwaltung.service.KundeService.FetchType;
+import de.shop.kundenverwaltung.service.KundeService.OrderByType;
 import de.shop.util.persistence.File;
 import de.shop.util.Log;
 import de.shop.util.NotFoundException;
@@ -135,7 +136,7 @@ public class KundeResource {
 		List<Kunde> kunden = null;
 		
 		if ("".equals(nachname)) {
-			kunden = ks.findAllKunden(FetchType.NUR_KUNDE);
+			kunden = ks.findAllKunden(FetchType.NUR_KUNDE, OrderByType.USERNAME);
 		}
 		else {
 			kunden = ks.findKundenByNachname("%" + nachname + "%");
