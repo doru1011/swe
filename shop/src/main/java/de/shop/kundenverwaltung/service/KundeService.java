@@ -1,5 +1,6 @@
 package de.shop.kundenverwaltung.service;
 
+import static de.shop.util.Constants.MAX_AUTOCOMPLETE;
 import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
 import java.util.Collections;
@@ -111,12 +112,11 @@ public class KundeService implements Serializable {
 		if (Strings.isNullOrEmpty(idPrefix)) {
 			return Collections.emptyList();
 		}
-		final List<Long> ids = em.createNamedQuery(Kunde.FIND_KUNDE_BY_ID, Long.class)
-				                 .setParameter(Kunde.PARAM_KUNDE_ID, idPrefix + '%')
+		final List<Long> ids = em.createNamedQuery(Kunde.FIND_IDS_BY_PREFIX, Long.class)
+				                 .setParameter(Kunde.PARAM_KUNDE_ID_PREFIX, idPrefix + '%')
 				                 .getResultList();
 		return ids;
 	}
-	
 	/**
 	 * Kunden suchen, deren ID den gleiche Praefix hat.
 	 * @param id Praefix der ID
@@ -127,8 +127,9 @@ public class KundeService implements Serializable {
 			return Collections.emptyList();
 		}
 		
-		return em.createNamedQuery(Kunde.FIND_KUNDE_BY_ID, Kunde.class)
-				 .setParameter(Kunde.PARAM_KUNDE_ID, id.toString() + '%')
+		return em.createNamedQuery(Kunde.FIND_KUNDEN_BY_ID_PREFIX, Kunde.class)
+				 .setParameter(Kunde.PARAM_KUNDE_ID_PREFIX, id.toString() + '%')
+				 .setMaxResults(MAX_AUTOCOMPLETE)
 				 .getResultList();
 	}
 	

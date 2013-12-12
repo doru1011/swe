@@ -93,6 +93,11 @@ import de.shop.util.persistence.File;
                     query = "SELECT k"
         			        + " FROM   Kunde k"
                     		+ " WHERE k.id = :" + Kunde.PARAM_KUNDE_ID),
+    @NamedQuery(name  = Kunde.FIND_KUNDEN_BY_ID_PREFIX,
+            		 query = "SELECT   k"
+            				+ " FROM  Kunde k"
+            		        + " WHERE CONCAT('', k.id) LIKE :" + Kunde.PARAM_KUNDE_ID_PREFIX
+            		        + " ORDER BY k.id"),
    	@NamedQuery(name  = Kunde.FIND_KUNDE_BY_EMAIL,
        query = "SELECT DISTINCT k"
 	            + " FROM   Kunde k"
@@ -101,6 +106,11 @@ import de.shop.util.persistence.File;
     query = "SELECT DISTINCT k"
             + " FROM   Kunde k LEFT JOIN FETCH k.bestellungen"
             + " WHERE  k.id = :" + Kunde.PARAM_KUNDE_ID),
+            @NamedQuery(name  = Kunde.FIND_IDS_BY_PREFIX,
+            query = "SELECT   k.id"
+			        + " FROM  Kunde k"
+			        + " WHERE CONCAT('', k.id) LIKE :" + Kunde.PARAM_KUNDE_ID_PREFIX
+			        + " ORDER BY k.id"),
     @NamedQuery(name  = Kunde.FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN,
     query = "SELECT      DISTINCT k"
 		      + " FROM     Kunde k LEFT JOIN FETCH k.bestellungen"
@@ -145,9 +155,11 @@ public class Kunde implements Serializable {
 	public static final String FIND_KUNDEN_BY_ID = PREFIX + "findKundenById";
 	public static final String FIND_KUNDE_BY_EMAIL = PREFIX + "findKundeByEmail";
 	public static final String FIND_KUNDE_BY_ID_FETCH_BESTELLUNGEN = PREFIX + "findKundeByIdFetchBestellungen";
+	public static final String FIND_IDS_BY_PREFIX = PREFIX + "findIdsByIdPrefix";
 	public static final String FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN =
             PREFIX + "findKundenByNachnameFetchBestellungen";
 	public static final String FIND_KUNDE_BY_USERNAME = PREFIX + "findKundeByUserName";
+	public static final String FIND_KUNDEN_ORDER_BY_ID = PREFIX + "findKundenOrderById";
 	public static final String FIND_KUNDEN_ORDER_BY_USERNAME = PREFIX + "findKundenOrderByUsername";
 	public static final String FIND_KUNDE_BY_BESTELLUNG_ID = PREFIX + "findKundeByBestellungId";
 	public static final String FIND_USERNAME_BY_USERNAME_PREFIX = PREFIX + "findKundeByUsernamePrefix";
@@ -157,6 +169,8 @@ public class Kunde implements Serializable {
 	public static final String PARAM_KUNDE_NACHNAME = "nachname";
 	public static final String PARAM_KUNDE_SEIT = "seit";
 	public static final String PARAM_KUNDE_ID = "id";
+	public static final String PARAM_KUNDE_ID_PREFIX = "idPrefix";
+	public static final String FIND_KUNDEN_BY_ID_PREFIX = PREFIX + "findKundenByIdPrefix";
 	public static final String PARAM_KUNDE_EMAIL = "email";
 	public static final String PARAM_KUNDE_USERNAME = "username";
 	public static final String PARAM_BESTELLUNG_ID = "bestellungId";
@@ -394,8 +408,11 @@ public class Kunde implements Serializable {
 	public Date getErstellt() {
 		return erstellt == null ? null : (Date) erstellt.clone();
 	}
+	public Date getSeit() {
+		return seit == null ? null : (Date) seit.clone();
+	}
 	public void setSeit(Date seit) {
-		this.erstellt = seit == null ? null : (Date) erstellt.clone();
+		this.seit = seit == null ? null : (Date) seit.clone();
 	}
 	public Adresse getAdresse() {
 		return adresse;
@@ -422,9 +439,6 @@ public class Kunde implements Serializable {
 		this.agbAkzeptiert = agbAkzeptiert;
 		}
 	
-	public Date getSeit() {
-		return seit == null ? null : (Date) seit.clone();
-	}
 
 
 	public List<Bestellung> getBestellungen() {
@@ -453,12 +467,13 @@ public class Kunde implements Serializable {
 		username = k.username;
 		nachname = k.nachname;
 		vorname = k.vorname;
+		seit = k.seit;
 		email = k.email;
 		password = k.password;
 		passwordWdh = k.password;
 		erstellt = k.erstellt;
 		agbAkzeptiert = k.agbAkzeptiert;
-		seit = k.seit;
+		
 	}
 
 	
@@ -486,7 +501,7 @@ public class Kunde implements Serializable {
 	public String toString() {
 		return "Kunde [username=" + username + ", id=" + id + ", password="
 				+ password + ", passwordWdh=" + passwordWdh + ", version="
-				+ version + ", nachname=" + nachname + ", vorname=" + vorname + ", seit="
+				+ version + ", nachname=" + nachname + ", vorname=" + vorname 
 				+", email=" + email
 				+ ", erstellt=" + erstellt
 				+ ", aktualisiert=" + aktualisiert + ", bestellungenUri="

@@ -70,7 +70,7 @@ public class KundeModel implements Serializable {
 	private static final String JSF_KUNDENVERWALTUNG = "/kundenverwaltung/";
 	private static final String JSF_VIEW_KUNDE = JSF_KUNDENVERWALTUNG + "viewKunde";
 	private static final String JSF_LIST_KUNDEN = JSF_KUNDENVERWALTUNG + "/kundenverwaltung/listKunden";
-	private static final String JSF_UPDATE_PRIVATKUNDE = JSF_KUNDENVERWALTUNG + "updatePrivatkunde";
+	private static final String JSF_UPDATE_PRIVATKUNDE = JSF_KUNDENVERWALTUNG + "updateKunde";
 	//private static final String JSF_UPDATE_FIRMENKUNDE = JSF_KUNDENVERWALTUNG + "updateFirmenkunde";
 	private static final String JSF_DELETE_OK = JSF_KUNDENVERWALTUNG + "okDelete";
 	
@@ -133,7 +133,7 @@ public class KundeModel implements Serializable {
 	private Long kundeId;
 	
 	private Kunde kunde;
-	private List<String> hobbies;
+	
 	
 	@Pattern(regexp = Kunde.NACHNAME_PATTERN, message = "{kunde.nachname.pattern}")
 	private String nachname;
@@ -196,13 +196,6 @@ public class KundeModel implements Serializable {
 		return kunde;
 	}
 
-	public List<String> getHobbies() {
-		return hobbies;
-	}
-	
-	public void setHobbies(List<String> hobbies) {
-		this.hobbies = hobbies;
-	}
 
 	public String getNachname() {
 		return nachname;
@@ -238,9 +231,6 @@ public class KundeModel implements Serializable {
 		this.vornameFilter = vornameFilter;
 	}
 
-	public Kunde getNeuerPrivatkunde() {
-		return neuerKunde;
-	}
 	
 	public String getCaptchaInput() {
 		return captchaInput;
@@ -302,7 +292,7 @@ public class KundeModel implements Serializable {
 			findKundeByIdErrorMsg(idPrefix);
 			return null;
 		}
-		//TODO methode anpassen
+		
 		kundenPrefix = ks.findKundenByIdPrefix(id);
 		if (kundenPrefix == null || kundenPrefix.isEmpty()) {
 			// Kein Kunde zu gegebenem ID-Praefix vorhanden
@@ -380,9 +370,9 @@ public class KundeModel implements Serializable {
 	//TODO create Privatkunde bearbeiten
 	@TransactionAttribute
 	@Log
-	public String createPrivatkunde() {
+	public String createKunde() {
 		if (!captcha.getValue().equals(captchaInput)) {
-			final String outcome = createPrivatkundeErrorMsg(null);
+			final String outcome = createKundeErrorMsg(null);
 			return outcome;
 		}
 
@@ -396,7 +386,7 @@ public class KundeModel implements Serializable {
 			neuerKunde = ks.createKunde(neuerKunde);
 		}
 		catch (EmailExistsException e) {
-			return createPrivatkundeErrorMsg(e);
+			return createKundeErrorMsg(e);
 		}
 		
 		// Push-Event fuer Webbrowser
@@ -411,7 +401,7 @@ public class KundeModel implements Serializable {
 		return JSF_VIEW_KUNDE + JSF_REDIRECT_SUFFIX;
 	}
 
-	private String createPrivatkundeErrorMsg(AbstractShopException e) {
+	private String createKundeErrorMsg(AbstractShopException e) {
 		if (e == null) {
 			messages.error(MSG_KEY_CREATE_PRIVATKUNDE_WRONG_CAPTCHA, locale, CLIENT_ID_CREATE_CAPTCHA_INPUT);
 		}
@@ -429,7 +419,7 @@ public class KundeModel implements Serializable {
 		return null;
 	}
 	//TODO 
-	public void createEmptyPrivatkunde() {
+	public void createEmptyKunde() {
 		captchaInput = null;
 
 		if (neuerKunde != null) {
@@ -553,14 +543,9 @@ public class KundeModel implements Serializable {
 			return null;
 		}
 		
-		kunde = ausgewaehlterKunde;
-		
-		//Wir haben keine Firmenkunden
-//		return Kunde.class.equals(ausgewaehlterKunde.getClass())
-//			   ? JSF_UPDATE_PRIVATKUNDE
-//			   : JSF_UPDATE_FIRMENKUNDE;
-		
+
 		return JSF_UPDATE_PRIVATKUNDE;
+		
 	}
 	
 	/**

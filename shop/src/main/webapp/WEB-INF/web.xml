@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
   <display-name>shop</display-name>
-   <context-param>
+  <context-param>
    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
    <param-value>/WEB-INF/shop.taglib.xml</param-value>
   </context-param>
@@ -153,9 +153,9 @@
     <extension>ecss</extension>
     <mime-type>text/css</mime-type>
   </mime-mapping>
-   <error-page>
-    <location>/error/defaultError.jsf</location>
-  </error-page>
+<!--    <error-page> -->
+<!--     <location>/error/defaultError.jsf</location> -->
+<!--   </error-page> -->
   <error-page>
     <error-code>403</error-code>
     <location>/error/accessDenied.jsf</location>

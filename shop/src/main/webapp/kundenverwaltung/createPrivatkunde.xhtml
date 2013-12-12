@@ -10,7 +10,7 @@
 	<body>
 		<ui:composition template="/WEB-INF/templates/desktop/main.xml">
 			<ui:define name="metadata">
-				<f:event type="preRenderView" listener="#{kundeModel.createEmptyPrivatkunde}"/>
+				<f:event type="preRenderView" listener="#{kundeModel.createEmptyKunde}"/>
 			</ui:define>
 			
 			<ui:param name="pageTitle" value="#{msgKv['createPrivatkunde.title']}"/>
@@ -204,7 +204,7 @@
 						</h:panelGrid>
 			
 						<p id="buttons">
-							<h:commandButton id="createSubmit" action="#{kundeModel.createPrivatkunde}" value="#{msgKv['createPrivatkunde.submit']}"/>
+							<h:commandButton id="createSubmit" action="#{kundeModel.createKunde}" value="#{msgKv['createPrivatkunde.submit']}"/>
 							#{' '}
 							<h:commandButton id="reset" type="reset" value="#{msgKv['createPrivatkunde.reset']}"/>
 						</p>

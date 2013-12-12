@@ -1,6 +1,6 @@
 package de.shop.bestellverwaltung.domain;
 
-import static de.shop.util.Constants.*; // ja faul erstmal
+import static de.shop.util.Constants.*; 
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.FetchType.EAGER;
@@ -9,11 +9,14 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.Basic;
@@ -224,6 +227,12 @@ public class Bestellung implements Serializable {
 	public Date getErstellt() {
 		return erstellt == null ? null : (Date) erstellt.clone();
 	}
+	
+	public String getErstellt(String format) {
+		final Format formatter = new SimpleDateFormat(format, Locale.getDefault());
+		return formatter.format(erstellt);
+	}
+	
 	public void setErstellt(Date erstellt) {
 		this.erstellt = erstellt == null ? null : (Date) erstellt.clone();
 	}
