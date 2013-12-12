@@ -24,7 +24,7 @@
 				<r:notifyMessages id="notifyMessages" stayTime="2000" nonblocking="true"/>
 		
 				<h:form id="createKundeForm">
-					<r:jQuery id="nachnameFocus" selector="#nachname" query="focus()"/>
+					<r:jQuery id="usernameFocus" selector="#username" query="focus()"/>
 					<!-- fokussiert auf id="kategorie" statt auf id="nachname" WARUM?
 					<r:focus id="createKundeFormFocus"/>
 					-->
@@ -40,6 +40,19 @@
 						<r:messages id="fehlermeldungGlobal" globalOnly="true"/>
 					
 						<h:panelGrid id="createKundeTabelle" columns="3">
+						
+						
+							<h:outputLabel id="usernameLabel" for="username" value="#{msgKv['createPrivatkunde.username']}"/>
+							<h:inputText id="username" value="#{kunde.username}">
+								<!-- Validierung durch Ajax mit JSF -->
+								<!--
+								<f:ajax event="blur" render="fehlermeldungenUmsatz"/>
+								-->
+								<!-- Validierung durch Javascript mit RichFaces -->
+								<r:validator oninvalid="$(#{r:element('username')}).addClass('invalid')"
+	                                         onvalid="$(#{r:element('username')}).removeClass('invalid')"/>
+							</h:inputText>
+							<r:messages id="fehlermeldungenUsername" for="username"/>
 				
 							<h:outputLabel id="nachnameLabel" for="nachname" value="#{msgKv['createPrivatkunde.nachname']}"/>
 							<h:inputText id="nachname" value="#{kunde.nachname}">
