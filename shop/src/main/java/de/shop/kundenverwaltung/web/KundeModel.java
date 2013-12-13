@@ -134,6 +134,7 @@ public class KundeModel implements Serializable {
 	
 	private Kunde kunde;
 	
+	@Pattern(regexp = Kunde.USERNAME_PATTERN, message = "{kunde.username.pattern}" )
 	private String username;
 	
 	
