@@ -139,7 +139,7 @@ public class KundeResource {
 			kunden = ks.findAllKunden(FetchType.NUR_KUNDE, OrderByType.USERNAME);
 		}
 		else {
-			kunden = ks.findKundenByNachname("%" + nachname + "%");
+			kunden = ks.findKundenByNachname("%" + nachname + "%", FetchType.NUR_KUNDE);
 		}
 		
 		if(kunden.isEmpty()) {
@@ -222,11 +222,11 @@ public class KundeResource {
 		LOGGER.tracef("Kunde nachher = %s", origKunde);
 		
 		// Update durchfuehren
-		kunde = ks.updateKunde(origKunde);
+		kunde = ks.updateKunde(origKunde,false);
 		setStructuralLinks(kunde, uriInfo);
-		
-		ks.updateKunde(kunde);
-		return Response.noContent().build();
+		return Response.ok(kunde)
+			       .links(getTransitionalLinks(kunde, uriInfo))
+			       .build();
 	}
 	
 	@DELETE

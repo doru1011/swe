@@ -257,7 +257,7 @@ public class KundeService implements Serializable {
 		}
 		return kunden;
 	}
-	
+	//TODO NOCH ANPASSEN
 	public Kunde findKundeByUsername(String username) {
 		try {
 			return em.createNamedQuery(Kunde.FIND_KUNDE_BY_ID, Kunde.class)
@@ -298,7 +298,7 @@ public class KundeService implements Serializable {
 	 * @param geaendertPassword Wurde das Passwort aktualisiert und muss es deshalb verschluesselt werden?
 	 * @return Der aktualisierte Kunde
 	 */
-	public <T extends Kunde> T updateKunde(T kunde, boolean geaendertPassword) {
+	public Kunde updateKunde(Kunde kunde, boolean geaendertPassword) {
 		if (kunde == null) {
 			return null;
 		}
@@ -334,23 +334,23 @@ public class KundeService implements Serializable {
 		return kunde;
 	}
 
-	public Kunde updateKunde(Kunde kunde) {
-		if (kunde == null) {
-			return null;
-		}
-		
-		em.detach(kunde);
-		
-		final Kunde	tmp = findKundeByEmail(kunde.getEmail());
-		if (tmp != null) {
-			em.detach(tmp);
-			if (tmp.getUsername() != kunde.getUsername()) {
-				throw new EmailExistsException(kunde.getEmail());
-			}
-		}
-		em.merge(kunde);
-		return kunde;
-	}
+//	public Kunde updateKunde(Kunde kunde) {
+//		if (kunde == null) {
+//			return null;
+//		}
+//		
+//		em.detach(kunde);
+//		
+//		final Kunde	tmp = findKundeByEmail(kunde.getEmail());
+//		if (tmp != null) {
+//			em.detach(tmp);
+//			if (tmp.getUsername() != kunde.getUsername()) {
+//				throw new EmailExistsException(kunde.getEmail());
+//			}
+//		}
+//		em.merge(kunde);
+//		return kunde;
+//	}
 
 	public void deleteKunde(Kunde kunde) {
 		if (kunde == null) {

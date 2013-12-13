@@ -70,7 +70,7 @@ public class KundeModel implements Serializable {
 	private static final String JSF_KUNDENVERWALTUNG = "/kundenverwaltung/";
 	private static final String JSF_VIEW_KUNDE = JSF_KUNDENVERWALTUNG + "viewKunde";
 	private static final String JSF_LIST_KUNDEN = JSF_KUNDENVERWALTUNG + "/kundenverwaltung/listKunden";
-	private static final String JSF_UPDATE_PRIVATKUNDE = JSF_KUNDENVERWALTUNG + "updateKunde";
+	private static final String JSF_UPDATE_KUNDE = JSF_KUNDENVERWALTUNG + "updateKunde";
 	//private static final String JSF_UPDATE_FIRMENKUNDE = JSF_KUNDENVERWALTUNG + "updateFirmenkunde";
 	private static final String JSF_DELETE_OK = JSF_KUNDENVERWALTUNG + "okDelete";
 	
@@ -86,7 +86,7 @@ public class KundeModel implements Serializable {
 	private static final String MSG_KEY_EMAIL_EXISTS = ".kunde.emailExists";
 	
 	private static final String CLIENT_ID_CREATE_CAPTCHA_INPUT = "createKundeForm:captchaInput";
-	private static final String MSG_KEY_CREATE_PRIVATKUNDE_WRONG_CAPTCHA = "kunde.wrongCaptcha";
+	private static final String MSG_KEY_CREATE_KUNDE_WRONG_CAPTCHA = "kunde.wrongCaptcha";
 	
 	private static final Class<?>[] PASSWORD_GROUP = { PasswordGroup.class };
 	
@@ -134,6 +134,8 @@ public class KundeModel implements Serializable {
 	
 	private Kunde kunde;
 	
+	private String username;
+	
 	
 	@Pattern(regexp = Kunde.NACHNAME_PATTERN, message = "{kunde.nachname.pattern}")
 	private String nachname;
@@ -180,7 +182,7 @@ public class KundeModel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "KundeModel [kundeId=" + kundeId + ", nachname=" + nachname
+		return "KundeModel [kundeId=" + kundeId + ",username" + username + ", nachname=" + nachname
 		       + ", geaendertKunde=" + geaendertKunde + "]";
 	}
 	
@@ -203,6 +205,14 @@ public class KundeModel implements Serializable {
 
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
+	}
+	
+	public String getUsername() {
+		return nachname;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public List<Kunde> getKunden() {
@@ -403,7 +413,7 @@ public class KundeModel implements Serializable {
 
 	private String createKundeErrorMsg(AbstractShopException e) {
 		if (e == null) {
-			messages.error(MSG_KEY_CREATE_PRIVATKUNDE_WRONG_CAPTCHA, locale, CLIENT_ID_CREATE_CAPTCHA_INPUT);
+			messages.error(MSG_KEY_CREATE_KUNDE_WRONG_CAPTCHA, locale, CLIENT_ID_CREATE_CAPTCHA_INPUT);
 		}
 		else {
 			final Class<?> exceptionClass = e.getClass();
@@ -544,7 +554,7 @@ public class KundeModel implements Serializable {
 		}
 		
 
-		return JSF_UPDATE_PRIVATKUNDE;
+		return JSF_UPDATE_KUNDE;
 		
 	}
 	

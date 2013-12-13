@@ -7,44 +7,42 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:c="http://java.sun.com/jsp/jstl/core"
 	  xmlns:r="http://richfaces.org/rich">
+
 	<body>
 		<ui:composition template="/WEB-INF/templates/desktop/main.xml">
-<!-- 			<ui:define name="metadata"> -->
-<!-- 				<f:event type="preRenderView" listener="#{kundeModel.hobbyTypeToString}"/> -->
-<!-- 			</ui:define> -->
-			
-			<ui:param name="pageTitle" value="#{msgKv['updatePrivatkunde.title']}"/>
+			<ui:param name="pageTitle" value="#{msgKv['updateKunde.title']}"/>
 		
 			<ui:define name="content">
 				<c:set var="kunde" value="#{kundeModel.kunde}" scope="view"/>
-				
+			
 				<h1>
-					<h:outputFormat id="headingPrivatkunde" value="#{msgKv['updatePrivatkunde.heading']}" rendered="#{not empty kunde}">
+					<h:outputFormat id="headingKunde" value="#{msgKv['updateKunde.heading']}" rendered="#{not empty kunde}">
 						<f:param id="idWert" value="#{kunde.id}"/>
 					</h:outputFormat>
 				</h1>
 				
 				<h:outputText id="fehlerKeinKunde"
-				              value="#{msgKv['updatePrivatkunde.keinKunde']}"
+				              value="#{msgKv['updateKunde.keinKunde']}"
 				              class="rf-msg-err"
 				              rendered="#{empty kunde}"/>
-	
+				              
 				<r:push id="updateEvent" address="updateKunde"
-			            ondataavailable="if (event.rf.data == '#{kunde.id}') { $('#updateMessage').html('&lt;span class=rf-msg-err&gt;#{msgKv['updatePrivatkunde.concurrentUpdate']}&lt;/span&gt;') }"/>
+			              ondataavailable="if (event.rf.data == '#{kunde.id}') { $('#updateMessage').html('&lt;span class=rf-msg-err&gt;#{msgKv['updateKunde.concurrentUpdate']}&lt;/span&gt;') }"/>
 				<span id="updateMessage"></span>
 				
-				<r:notifyMessages id="notifyMessages" stayTime="2000" nonblocking="true"/>
 				<r:messages id="fehlermeldungGobal" globalOnly="true"/>
+				<r:notifyMessages id="notifyMessages" stayTime="2000" nonblocking="true"/>
 				
 				<h:form id="updateKundeForm" rendered="#{not empty kunde}">
-					<r:focus id="formFocus"/>
-					<!--
 					<r:jQuery id="nachnameFocus" selector="#nachname" query="focus()"/>
+					<!--
+					<r:focus id="formFocus"/>
 					-->
 					
 					<h:panelGrid id="updateKundeTabelle"
 					             columns="3">
-						<h:outputLabel id="nachnameLabel" for="nachname" value="#{msgKv['updatePrivatkunde.nachname']}"/>
+					             
+						<h:outputLabel id="nachnameLabel" for="nachname" value="#{msgKv['updateKunde.nachname']}"/>
 						<h:inputText id="nachname"
 						             value="#{kunde.nachname}"
 						             valueChangeListener="#{kundeModel.geaendert}">
@@ -53,11 +51,15 @@
 						</h:inputText>
 						<r:messages id="fehlermeldungenNachname" for="nachname"/>
 			
-						<h:outputLabel id="vornameLabel" for="vorname" value="#{msgKv['updatePrivatkunde.vorname']}"/>
+						<h:outputLabel id="vornameLabel" for="vorname" value="#{msgKv['updateKunde.vorname']}"/>
 						<h:inputText id="vorname" value="#{kunde.vorname}" valueChangeListener="#{kundeModel.geaendert}"/>
 						<f:verbatim/>
 						
-<!-- 						<h:outputLabel id="kategorieLabel" value="#{msgKv['updatePrivatkunde.kategorie']}" for="kategorie"/> -->
+						<h:outputLabel id="usernameLabel" for="username" value="#{msgKv['updateKunde.username']}"/>
+						<h:inputText id="username" value="#{kunde.username}" valueChangeListener="#{kundeModel.geaendert}"/>
+						<f:verbatim/>
+						
+<!-- 						<h:outputLabel id="kategorieLabel" value="#{msgKv['updateFirmenkunde.kategorie']}" for="kategorie"/> -->
 <!-- 						<r:inputNumberSpinner id="kategorie" -->
 <!-- 						                      value="#{kunde.kategorie}" -->
 <!-- 						                      minValue="0" maxValue="5" -->
@@ -67,10 +69,10 @@
 						
 						<h:outputLabel id="seitLabel"
 						               for="seit"
-						               value="#{msgKv['updatePrivatkunde.seit']}"
+						               value="#{msgKv['updateKunde.seit']}"
 						               escape="false"/>
 						<r:calendar id="seit"
-						            datePattern="#{msgKv['updatePrivatkunde.calendar.pattern']}"
+						            datePattern="#{msgKv['updateKunde.calendar.pattern']}"
 						            value="#{kunde.seit}"
 						            timezone="CET">
 							<!--
@@ -79,24 +81,24 @@
 						</r:calendar>
 						<r:messages id="fehlermeldungSeit" for="seit"/>
 						
-<!-- 						<h:outputLabel id="umsatzLabel" for="umsatz" value="#{msgKv['updatePrivatkunde.umsatz']}"/> -->
+<!-- 						<h:outputLabel id="umsatzLabel" for="umsatz" value="#{msgKv['updateFirmenkunde.umsatz']}"/> -->
 <!-- 						<h:inputText id="umsatz" -->
 <!-- 						             value="#{kunde.umsatz}" -->
-<!-- 						             converterMessage="#{msgKv['updatePrivatkunde.umsatz.convert']}" -->
+<!-- 						             converterMessage="#{msgKv['updateFirmenkunde.umsatz.convert']}" -->
 <!-- 						             valueChangeListener="#{kundeModel.geaendert}"> -->
-<!-- 						   
-<!-- 							<f:convertNumber type="currency" -->
-<!-- 							                 currencyCode="EUR" -->
-<!-- 							                 maxFractionDigits="2"/> -->
-<!-- 							--> 
+						    <!--
+							<f:convertNumber type="currency"
+							                 currencyCode="EUR"
+							                 maxFractionDigits="2"/>
+							-->
 <!-- 							<f:ajax event="blur" render="updateKundeForm:fehlermeldungenUmsatz"/> -->
 <!-- 						</h:inputText> -->
 <!-- 						<r:messages id="fehlermeldungenUmsatz" for="umsatz"/> -->
-						
-<!-- 						<h:outputLabel id="rabattLabel" for="rabatt" value="#{msgKv['updatePrivatkunde.rabatt']}"/> -->
+		
+<!-- 						<h:outputLabel id="rabattLabel" for="rabatt" value="#{msgKv['updateFirmenkunde.rabatt']}"/> -->
 <!-- 						<h:inputText id="rabatt" -->
 <!-- 						             value="#{kunde.rabatt}" -->
-<!-- 						             converterMessage="#{msgKv['updatePrivatkunde.rabatt.convert']}" -->
+<!-- 						             converterMessage="#{msgKv['updateFirmenkunde.rabatt.convert']}" -->
 <!-- 						             valueChangeListener="#{kundeModel.geaendert}"> -->
 <!-- 							<f:convertNumber type="percent" -->
 <!-- 		                                     maxFractionDigits="2" -->
@@ -104,47 +106,21 @@
 <!-- 							<f:ajax event="blur" render="updateKundeForm:fehlermeldungenRabatt"/> -->
 <!-- 						</h:inputText> -->
 <!-- 						<r:messages id="fehlermeldungenRabatt" for="rabatt"/> -->
-			
-<!-- 						<h:outputLabel id="familienstandLabel" for="familienstandMenu" value="#{msgKv['updatePrivatkunde.familienstand']}"/> -->
-<!-- 						<r:select id="familienstandMenu" -->
-<!-- 						          enableManualInput="true" -->
-<!-- 						          defaultLabel="#{msgKv['updatePrivatkunde.familienstand']}" -->
-<!-- 						          value="#{kunde.familienstand}" -->
-<!-- 						          valueChangeListener="#{kundeModel.geaendert}"> -->
-<!-- 							<f:selectItem id="ledig" itemValue="LEDIG" itemLabel="#{msgKv['updatePrivatkunde.familienstand.ledig']}"/> -->
-<!-- 							<f:selectItem id="verheiratet" itemValue="VERHEIRATET" itemLabel="#{msgKv['updatePrivatkunde.familienstand.verheiratet']}"/> -->
-<!-- 							<f:selectItem id="geschieden" itemValue="GESCHIEDEN" itemLabel="#{msgKv['updatePrivatkunde.familienstand.geschieden']}"/> -->
-<!-- 							<f:selectItem id="verwitwet" itemValue="VERWITWET" itemLabel="#{msgKv['updatePrivatkunde.familienstand.verwitwet']}"/> -->
-<!-- 						</r:select> -->
-<!-- 						<f:verbatim/> -->
 		
-<!-- 						<h:outputLabel id="newsletterLabel" value="#{msgKv['updatePrivatkunde.newsletter']}"/> -->
-<!-- 						<h:selectBooleanCheckbox id="newsletter" value="#{kunde.newsletter}" valueChangeListener="#{kundeModel.geaendert}"/> -->
-<!-- 						<f:verbatim/> -->
-		
-<!-- 						<h:outputText id="hobbiesLabel" value="#{msgKv['updatePrivatkunde.hobbies']}"/> -->
-<!-- 						<h:selectManyCheckbox value="#{kundeModel.hobbies}" -->
-<!-- 						                      layout="pageDirection" -->
-<!-- 						                      valueChangeListener="#{kundeModel.geaendert}"> -->
-<!-- 							<f:selectItem itemValue="SPORT" -->
-<!-- 										  itemLabel="#{msgKv['updatePrivatkunde.sport']}"/> -->
-<!-- 							<f:selectItem itemValue="LESEN"  -->
-<!-- 										  itemLabel="#{msgKv['updatePrivatkunde.lesen']}"/> -->
-<!-- 							<f:selectItem itemValue="REISEN"  -->
-<!-- 										  itemLabel="#{msgKv['updatePrivatkunde.reisen']}"/> -->
-<!-- 						</h:selectManyCheckbox> -->
-<!-- 						<f:verbatim/> -->
-						
-						<h:outputLabel id="emailLabel" for="email" value="#{msgKv['updatePrivatkunde.email']}"/>
+						<h:outputLabel id="emailLabel" for="email" value="#{msgKv['updateKunde.email']}"/>
 						<h:inputText id="email" value="#{kunde.email}" valueChangeListener="#{kundeModel.geaendert}">
 							<r:validator oninvalid="$(#{r:element('email')}).addClass('invalid')"
 	                                     onvalid="$(#{r:element('email')}).removeClass('invalid')"/>
 						</h:inputText>
 						<r:messages id="fehlermeldungenEmail" for="email"/>
+						
+<!-- 						<h:outputLabel id="newsletterLabel" value="#{msgKv['updateFirmenkunde.newsletter']}"/> -->
+<!-- 						<h:selectBooleanCheckbox id="newsletter" value="#{kunde.newsletter}" valueChangeListener="#{kundeModel.geaendert}"/> -->
+<!-- 						<f:verbatim/> -->
 					</h:panelGrid>
 					
 <!-- 					<h:panelGrid id="bemerkungenGrid"> -->
-<!-- 						<h:outputLabel id="bemerkungenLabel" value="#{msgKv['updatePrivatkunde.bemerkungen']}" -->
+<!-- 						<h:outputLabel id="bemerkungenLabel" value="#{msgKv['updateFirmenkunde.bemerkungen']}" -->
 <!-- 						               for="bemerkungen" -->
 <!-- 						               class="kundendetailsBezeichner"/> -->
 <!-- 						<r:messages id="fehlermeldungBemerkungen" for="bemerkungen"/> -->
@@ -157,13 +133,13 @@
 <!-- 					</h:panelGrid> -->
 		
 					<p id="buttons">
-						<h:commandButton id="button" action="#{kundeModel.update}" value="#{msgKv['updatePrivatkunde.submit']}"/>
+						<h:commandButton id="button" action="#{kundeModel.update}" value="#{msgKv['updateKunde.submit']}"/>
 						#{' '}
-						<h:commandButton type="reset" value="#{msgKv['updatePrivatkunde.reset']}"/>
+						<h:commandButton type="reset" value="#{msgKv['updateKunde.reset']}"/>
 					</p>
 					
 					<p id="hinweisPflichtfelder">
-						#{msgKv['updatePrivatkunde.required']}
+						#{msgKv['updateKunde.required']}
 					</p>
 				</h:form>
 			</ui:define>

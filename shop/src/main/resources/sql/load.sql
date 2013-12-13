@@ -7,24 +7,45 @@
 --
 -- kunde
 --
-INSERT INTO kunde (username, id, password, version, nachname, erstellt, email, aktualisiert) VALUES ('user1',100,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Admin','06.10.2013 12:00:00','admin@hska.de','06.10.2013 12:00:00');
-INSERT INTO kunde (username, id, password, version, nachname, erstellt, email, aktualisiert) VALUES ('user2',101,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Adrianson','06.10.2013 12:00:00','101@hska.de','06.10.2013 12:00:00');
-INSERT INTO kunde (username, id, password, version, nachname, erstellt, email, aktualisiert) VALUES ('user3',102,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Alfredson','06.10.2013 12:00:00','102@hska.de','06.10.2013 12:00:00');
-INSERT INTO kunde (username, id, password, version, nachname, erstellt, email, aktualisiert) VALUES ('user4',103,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Antonson','06.10.2013 12:00:00','103@hska.de','06.10.2013 12:00:00');
-INSERT INTO kunde (username, id, password, version, nachname, erstellt, email, aktualisiert) VALUES ('user5',104,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Dirkson','06.10.2013 12:00:00','104@hska.de','06.10.2013 12:00:00');
-INSERT INTO kunde (username, id, password, version, nachname, erstellt, email, aktualisiert) VALUES ('user6',105,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Emilson','06.10.2013 12:00:00','105@hska.de','06.10.2013 12:00:00');
+INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user1',100,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Admin','Joe','31.01.2001','06.10.2013 12:00:00','admin@hska.de','06.10.2013 12:00:00');
+INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user2',101,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Zeno','Joe','31.01.2001','06.10.2013 12:00:00','101@hska.de','06.10.2013 12:00:00');
+INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user3',102,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Steffen','Joe','31.01.2001','06.10.2013 12:00:00','102@hska.de','06.10.2013 12:00:00');
+INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user4',103,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Timo','Joe','31.01.2001','06.10.2013 12:00:00','103@hska.de','06.10.2013 12:00:00');
+INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user5',104,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Timonpumba','Joe','31.01.2001','06.10.2013 12:00:00','104@hska.de','06.10.2013 12:00:00');
+INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user6',105,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Xena','Joe','31.01.2001','06.10.2013 12:00:00','105@hska.de','06.10.2013 12:00:00');
 
-
+--Columns:
+--
+--ID - NUMBER(19)
+--AKTUALISIERT - TIMESTAMP(6)
+--EMAIL - VARCHAR2(128)
+--ERSTELLT - TIMESTAMP(6)
+--NACHNAME - VARCHAR2(32)
+--PASSWORD - VARCHAR2(256)
+--SEIT - DATE
+--USERNAME - VARCHAR2(255)
+--VERSION - NUMBER(10)
+--VORNAME - VARCHAR2(32)
+--FILE_FK - NUMBER(19)
 --
 -- adresse
 --
-INSERT INTO adresse(id, kunde_fk, version, plz, ort, erstellt, aktualisiert) VALUES (200,100,0,'76133','Karlsruhe','06.10.2013 12:00:00','06.10.2013 12:00:00');
-INSERT INTO adresse(id, kunde_fk, version, plz, ort, erstellt, aktualisiert) VALUES (201,101,0,'76133','Karlsruhe','06.10.2013 12:00:00','06.10.2013 12:00:00');
-INSERT INTO adresse(id, kunde_fk, version, plz, ort, erstellt, aktualisiert) VALUES (202,102,0,'76133','Karlsruhe','06.10.2013 12:00:00','06.10.2013 12:00:00');
-INSERT INTO adresse(id, kunde_fk, version, plz, ort, erstellt, aktualisiert) VALUES (203,103,0,'76133','Karlsruhe','06.10.2013 12:00:00','06.10.2013 12:00:00');
-INSERT INTO adresse(id, kunde_fk, version, plz, ort, erstellt, aktualisiert) VALUES (204,104,0,'76133','Karlsruhe','06.10.2013 12:00:00','06.10.2013 12:00:00');
-INSERT INTO adresse(id, kunde_fk, version, plz, ort, erstellt, aktualisiert) VALUES (205,105,0,'76133','Karlsruhe','06.10.2013 12:00:00','06.10.2013 12:00:00');
+INSERT INTO adresse(id, kunde_fk, version, plz, ort, strasse, hausnr, erstellt, aktualisiert) VALUES (200,100,0,'76133','Karlsruhe','Jordanpablestrasse','5','06.10.2013 12:00:00','06.10.2013 12:00:00');
+INSERT INTO adresse(id, kunde_fk, version, plz, ort, strasse, hausnr, erstellt, aktualisiert) VALUES (201,101,0,'76133','Karlsruhe','Jordanpablestrasse','5','06.10.2013 12:00:00','06.10.2013 12:00:00');
+INSERT INTO adresse(id, kunde_fk, version, plz, ort, strasse, hausnr, erstellt, aktualisiert) VALUES (202,102,0,'76133','Karlsruhe','Jordanpablestrasse','5','06.10.2013 12:00:00','06.10.2013 12:00:00');
+INSERT INTO adresse(id, kunde_fk, version, plz, ort, strasse, hausnr, erstellt, aktualisiert) VALUES (203,103,0,'76133','Karlsruhe','Jordanpablestrasse','5','06.10.2013 12:00:00','06.10.2013 12:00:00');
+INSERT INTO adresse(id, kunde_fk, version, plz, ort, strasse, hausnr, erstellt, aktualisiert) VALUES (204,104,0,'76133','Karlsruhe','Jordanpablestrasse','5','06.10.2013 12:00:00','06.10.2013 12:00:00');
+INSERT INTO adresse(id, kunde_fk, version, plz, ort, strasse, hausnr, erstellt, aktualisiert) VALUES (205,105,0,'76133','Karlsruhe','Jordanpablestrasse','5','06.10.2013 12:00:00','06.10.2013 12:00:00');
 
+--ID - NUMBER(19)
+--AKTUALISIERT - TIMESTAMP(6)
+--ERSTELLT - TIMESTAMP(6)
+--HAUSNR - VARCHAR2(4)
+--ORT - VARCHAR2(32)
+--PLZ - VARCHAR2(32)
+--STRASSE - VARCHAR2(32)
+--VERSION - NUMBER(10)
+--KUNDE_FK - NUMBER(19)
 
 
 --
@@ -33,7 +54,7 @@ INSERT INTO adresse(id, kunde_fk, version, plz, ort, erstellt, aktualisiert) VAL
 -- Die eigene Stored Procedure "insert_file_kunde" fuegt in die Tabelle file_tbl eine Zeile bzw. einen Datensatz ein,
 -- der u.a. eine Datei enthaelt 
 CALL insert_file_kunde(101,1,0,'image.png','image.png','png','I','06.10.2013 12:00:00','06.10.2013 12:00:00');
-CALL insert_file_kunde(102,2,0,'video.mp4','video.mp4','mp4','V','06.10.2013 12:00:00','06.10.2013 12:00:00');
+--CALL insert_file_kunde(102,2,0,'video.mp4','video.mp4','mp4','V','06.10.2013 12:00:00','06.10.2013 12:00:00');
 
 --
 -- artikel

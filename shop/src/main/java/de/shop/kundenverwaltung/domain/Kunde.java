@@ -194,6 +194,7 @@ public class Kunde implements Serializable {
 		
 	@Column(nullable = false, updatable = false)
 	@Pattern(regexp = USERNAME_PATTERN, message = "{kunde.username.pattern}" )
+	@NotNull(message = "{kundenverwaltung.kunde.username.notNull}")
 	private String username;
 	
 	@Id
@@ -309,8 +310,9 @@ public class Kunde implements Serializable {
 		super();
 	}
 
-	public Kunde(String nachname, String vorname, String email, Date seit) {
+	public Kunde(String username, String nachname, String vorname, String email, Date seit) {
 		super();
+		this.username = username;
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
