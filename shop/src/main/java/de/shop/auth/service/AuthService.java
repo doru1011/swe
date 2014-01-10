@@ -46,7 +46,7 @@ import de.shop.util.Log;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ 
  */
 @ApplicationScoped
 @Log

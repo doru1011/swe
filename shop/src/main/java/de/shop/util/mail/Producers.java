@@ -8,7 +8,7 @@ import javax.enterprise.inject.Produces;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @ApplicationScoped
 public class Producers implements Serializable {

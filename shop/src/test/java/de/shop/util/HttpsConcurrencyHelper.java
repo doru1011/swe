@@ -9,7 +9,7 @@ import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient4Engine;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 public class HttpsConcurrencyHelper {
 	private final AbstractHttpClient httpClient;

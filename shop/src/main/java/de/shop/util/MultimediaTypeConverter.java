@@ -4,7 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @Converter(autoApply = true)
 public class MultimediaTypeConverter implements AttributeConverter<MultimediaType, String> {

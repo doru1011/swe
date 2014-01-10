@@ -56,7 +56,7 @@ import de.shop.util.web.Messages;
 
 /**
  * Dialogsteuerung fuer die Kundenverwaltung
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ *
  */
 @Named
 @SessionScoped

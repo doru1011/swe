@@ -11,5 +11,5 @@ import javax.xml.bind.annotation.XmlAccessorType;
 //import javax.xml.bind.annotation.XmlSchema;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */

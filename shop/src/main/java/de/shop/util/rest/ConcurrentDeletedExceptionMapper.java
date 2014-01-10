@@ -15,7 +15,7 @@ import de.shop.util.persistence.ConcurrentDeletedException;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @Provider
 @Log

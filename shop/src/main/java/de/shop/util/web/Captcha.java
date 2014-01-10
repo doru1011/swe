@@ -17,7 +17,7 @@ import javax.inject.Named;
 import de.shop.auth.service.AuthService;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @Named
 @SessionScoped

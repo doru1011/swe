@@ -38,7 +38,7 @@ import de.shop.util.web.Messages;
 
 /**
  * Dialogsteuerung f&uuml;r Authentifizierung (Login und Logout) und Authorisierung (rollenbasierte Berechtigungen).
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+
  */
 @Named
 @SessionScoped

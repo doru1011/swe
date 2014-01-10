@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @Model
 public class SnoopModel {

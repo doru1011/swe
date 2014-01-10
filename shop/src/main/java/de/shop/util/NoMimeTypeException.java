@@ -4,7 +4,7 @@ import javax.enterprise.inject.Vetoed;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @Vetoed
 public class NoMimeTypeException extends AbstractShopException {

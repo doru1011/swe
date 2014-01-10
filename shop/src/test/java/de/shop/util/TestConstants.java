@@ -4,7 +4,7 @@ import static de.shop.util.Constants.REST_PATH;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 public final class TestConstants {
 	public static final String WEB_PROJEKT = "shop";

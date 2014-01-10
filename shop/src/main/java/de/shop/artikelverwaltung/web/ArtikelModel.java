@@ -20,7 +20,7 @@ import de.shop.util.interceptor.Log;
 
 /**
  * Dialogsteuerung fuer ArtikelService
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+
  */
 @Model
 public class ArtikelModel implements Serializable {

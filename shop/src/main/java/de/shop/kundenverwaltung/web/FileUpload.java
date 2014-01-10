@@ -23,7 +23,7 @@ import de.shop.kundenverwaltung.service.KundeService.FetchType;
 import de.shop.util.interceptor.Log;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @Named("fileUploadKunde")  // es koennte aus eine FileUpload-Klasse fuer Artikel geben
 @SessionScoped

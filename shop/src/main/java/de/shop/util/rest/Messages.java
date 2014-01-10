@@ -23,7 +23,7 @@ import org.jboss.logging.Logger;
 import com.google.common.base.Splitter;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @ApplicationScoped
 public class Messages {

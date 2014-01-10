@@ -2,7 +2,7 @@ package de.shop.kundenverwaltung.service;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ 
  */
 public class EmailExistsException extends KundeServiceException {
 	private static final long serialVersionUID = 4867667611097919943L;

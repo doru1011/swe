@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author <a href="mailto:jbalunas@redhat.com">Jay Balunas</a>
  * @author <a href="http://community.jboss.org/people/bleathem">Brian Leathem</a>
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * 
  */
 @Named("userAgent")
 @SessionScoped
