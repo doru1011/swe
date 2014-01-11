@@ -29,7 +29,7 @@ import com.google.common.base.Splitter;
 public class Messages {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
-	private static final String APPLICATION_MESSAGES = "/ApplicationMessages";
+	private static final String APPLICATION_MESSAGES = "/ValidationMessages";
 	private static final List<Locale> LOCALES_DEFAULT = Arrays.asList(Locale.ENGLISH);
 	
 	@Resource(name = "locales")

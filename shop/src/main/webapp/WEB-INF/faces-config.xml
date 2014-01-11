@@ -16,7 +16,7 @@
    <supported-locale>de</supported-locale>
   </locale-config>
   
-  <message-bundle>ApplicationMessages</message-bundle>
+  <message-bundle>ValidationMessages</message-bundle>
 
   <resource-bundle>
    <base-name>web.Messages</base-name>

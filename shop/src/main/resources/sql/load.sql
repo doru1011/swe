@@ -13,7 +13,7 @@ INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, ers
 INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user4',103,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Timo','Joe','31.01.2001','06.10.2013 12:00:00','103@hska.de','06.10.2013 12:00:00');
 INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user5',104,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Timonpumba','Joe','31.01.2001','06.10.2013 12:00:00','104@hska.de','06.10.2013 12:00:00');
 INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user6',105,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Xena','Joe','31.01.2001','06.10.2013 12:00:00','105@hska.de','06.10.2013 12:00:00');
-
+INSERT INTO kunde (username, id, password, version, nachname, vorname, seit, erstellt, email, aktualisiert) VALUES ('user7',108,'Ftw2iom0KLJIVIQxO6Z6ORLKA/KytCQpF0pPiz3ITkQ=',0,'Timo','Klein','31.01.2001','06.10.2013 12:00:00','108@hska.de','06.10.2013 12:00:00');
 --Columns:
 --
 --ID - NUMBER(19)

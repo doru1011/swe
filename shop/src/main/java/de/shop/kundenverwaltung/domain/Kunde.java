@@ -221,7 +221,7 @@ public class Kunde implements Serializable {
 	private int version = ERSTE_VERSION;
 	
 	@Column(name = "nachname", length = NACHNAME_LENGTH_MAX, nullable = false)
-	@NotNull(message = "{kundenverwaltung.kunde.nachname.notNull}")
+	@NotNull(message = "{kunde.nachname.notNull}")
 	@Size(min = NACHNAME_LENGTH_MIN, max = NACHNAME_LENGTH_MAX, message = "{kundenverwaltung.kunde.nachname.length}")
 	@Pattern(regexp = NACHNAME_PATTERN, message = "{kundenverwaltung.kunde.nachname.pattern}")
 	private String nachname;

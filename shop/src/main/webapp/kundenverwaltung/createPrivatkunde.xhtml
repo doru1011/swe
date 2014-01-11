@@ -44,11 +44,10 @@
 						
 							<h:outputLabel id="usernameLabel" for="username" value="#{msgKv['createKunde.username']}"/>
 							<h:inputText id="username" value="#{kunde.username}">
-							<f:verbatim/>
-							
 							</h:inputText>
 							<r:messages id="fehlermeldungenUsername" for="username"/>
-				
+							
+							
 							<h:outputLabel id="nachnameLabel" for="nachname" value="#{msgKv['createKunde.nachname']}"/>
 							<h:inputText id="nachname" value="#{kunde.nachname}">
 								<!-- Validierung durch Ajax mit JSF -->

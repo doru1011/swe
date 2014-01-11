@@ -153,9 +153,9 @@
     <extension>ecss</extension>
     <mime-type>text/css</mime-type>
   </mime-mapping>
-   <error-page>
-    <location>/error/defaultError.jsf</location>
-  </error-page>
+<!--    <error-page> -->
+<!--     <location>/error/defaultError.jsf</location> -->
+<!--   </error-page> -->
   <error-page>
     <error-code>403</error-code>
     <location>/error/accessDenied.jsf</location>
@@ -273,8 +273,8 @@
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>shopMitarbeiterTaetigkeiten</web-resource-name>
-      <url-pattern>/kundenverwaltung/createPrivatkunde.jsf</url-pattern>
-      <url-pattern>/kundenverwaltung/updatePrivatkunde.jsf</url-pattern>
+      <url-pattern>/kundenverwaltung/createKunde.jsf</url-pattern>
+      <url-pattern>/kundenverwaltung/updateKunde.jsf</url-pattern>
       <url-pattern>/kundenverwaltung/updateFirmenkunde.jsf</url-pattern>
       <http-method>POST</http-method>
       <http-method>GET</http-method>
