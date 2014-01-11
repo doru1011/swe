@@ -176,35 +176,35 @@
 														alt="#{msgKv['viewKunde.kunde.bild.alt']}"/>
 									</c:when>
 										
-<!-- 									<c:when test="${multimediaType eq 'VIDEO'}"> -->
+									<c:when test="${multimediaType eq 'VIDEO'}">
 <!-- 										MediaElement von http://mediaelementjs.com und https://github.com/johndyer/mediaelement/tree/master/build -->
 <!-- 										Alternativen siehe http://html5video.org/wiki/HTML5_Video_Player_Comparison -->
-<!-- 										<h:outputScript id="jsVideo" library="js" name="mediaelement-and-player.min.js"/> -->
-<!-- 										<h:outputStylesheet id="cssVideo" library="css" name="mediaelementplayer.css"/> -->
-<!-- 										<video id="video" -->
-<!-- 											   controls="controls" -->
-<!-- 											   width="640" -->
-<!-- 											   height="480"> -->
-<!-- 											<source src="/../filesDb/shop/#{filename}" -->
-<!-- 											        type="#{file.mimeType.toString()}"/> -->
-<!-- 										</video>  -->
-<!-- 										</c:when> -->
+										<h:outputScript id="jsVideo" library="js" name="mediaelement-and-player.min.js"/>
+										<h:outputStylesheet id="cssVideo" library="css" name="mediaelementplayer.css"/>
+										<video id="video"
+											   controls="controls"
+											   width="640"
+											   height="480">
+											<source src="/../filesDb/shop/#{filename}"
+											        type="#{file.mimeType.toString()}"/>
+										</video> 
+										</c:when>
 										<!-- http://www.videojs.com -->
 										
-										<h:outputStylesheet id="cssVideo" library="css" name="video-js.css"/>
-										<h:outputScript id="jsVideo" library="js" name="video.js"/>
-										<script> videojs.options.flash.swf = "#{resource['js:video-js.swf']}"
+<!-- 										<h:outputStylesheet id="cssVideo" library="css" name="video-js.css"/> -->
+<!-- 										<h:outputScript id="jsVideo" library="js" name="video.js"/> -->
+<!-- 										<script> videojs.options.flash.swf = "#{resource['js:video-js.swf']}" -->
 										
-										</script>
-										<video id="video"
-										       class="video-js vjs-default-skin"
-										       controls="controls"
-										       preload="auto"
-										       width="640"
-										       height="480"
-										       data-setup='{"example_option":true}'>
-											<source src="/../filesDb/shop/#{filename}" type="#{file.mimeType.toString()}" />
-										</video>
+<!-- 										</script> -->
+<!-- 										<video id="video" -->
+<!-- 										       class="video-js vjs-default-skin" -->
+<!-- 										       controls="controls" -->
+<!-- 										       preload="auto" -->
+<!-- 										       width="640" -->
+<!-- 										       height="480" -->
+<!-- 										       data-setup='{"example_option":true}'> -->
+<!-- 											<source src="/../filesDb/shop/#{filename}" type="#{file.mimeType.toString()}" /> -->
+<!-- 										</video> -->
 										
 <!-- 									<c:set var="file" value="${kundeModel.kunde.file}" scope="view"/> -->
 <!-- 									<c:set var="multimediaType" value="${file.multimediaType}" scope="view"/> -->
