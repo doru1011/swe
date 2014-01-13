@@ -106,7 +106,7 @@ public class Artikel implements Serializable {
 	@Size(max = BESCHREIBUNG_MAX_LENGTH, message = "{artikelverwaltung.artikel.beschreibung.max}")
 	private String beschreibung;
 	
-	@Column(name = "kategorie_fk", length =2)
+	@Column(name = "kategorie_fk", length = 2)
 	//@Enumerated
 	@NotNull(message = "{artikelverwaltung.artikel.kategorie.notNull}")
 	private KategorieType kategorie;
@@ -249,16 +249,18 @@ public class Artikel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Artikel other = (Artikel) obj;
+		final Artikel other = (Artikel) obj;
 		if (aktualisiert == null) {
 			if (other.aktualisiert != null)
 				return false;
-		} else if (!aktualisiert.equals(other.aktualisiert))
+		} 
+		else if (!aktualisiert.equals(other.aktualisiert))
 			return false;
 		if (artikelUri == null) {
 			if (other.artikelUri != null)
 				return false;
-		} else if (!artikelUri.equals(other.artikelUri))
+		} 
+		else if (!artikelUri.equals(other.artikelUri))
 			return false;
 		if (aufLager == null) {
 			if (other.aufLager != null)
@@ -268,29 +270,34 @@ public class Artikel implements Serializable {
 		if (beschreibung == null) {
 			if (other.beschreibung != null)
 				return false;
-		} else if (!beschreibung.equals(other.beschreibung))
+		} 
+		else if (!beschreibung.equals(other.beschreibung))
 			return false;
 		if (erstellt == null) {
 			if (other.erstellt != null)
 				return false;
-		} else if (!erstellt.equals(other.erstellt))
+		} 
+		else if (!erstellt.equals(other.erstellt))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} 
+		else if (!id.equals(other.id))
 			return false;
 		if (kategorie != other.kategorie)
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} 
+		else if (!name.equals(other.name))
 			return false;
 		if (preis == null) {
 			if (other.preis != null)
 				return false;
-		} else if (!preis.equals(other.preis))
+		} 
+		else if (!preis.equals(other.preis))
 			return false;
 		if (version != other.version)
 			return false;
