@@ -213,7 +213,7 @@ public class Kunde implements Serializable {
 	
 	@Basic(optional = false)
 	@Temporal(DATE)
-	@Past(message = "{kunde.seit.past}")
+//	@Past(message = "{kunde.seit.past}")
 	private Date seit;
 
 	@Version
