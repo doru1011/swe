@@ -99,7 +99,7 @@ public class KundeResource {
 	public Response findKundeById(@PathParam("id") Long id) {
 		final Kunde kunde = ks.findKundeById(id, FetchType.MIT_BESTELLUNGEN);
 		if (kunde == null) {
-			throw new NotFoundException("Kein Kunde mit der ID "+id+" gefunden.");
+			throw new NotFoundException("Kein Kunde mit der ID " + id + " gefunden.");
 		}
 		
 		setStructuralLinks(kunde, uriInfo);
@@ -125,14 +125,15 @@ public class KundeResource {
 			}
 		}
 		
-		return Response.ok(new GenericEntity<List<Bestellung>>(bestellungen) {})
+		return Response.ok(new GenericEntity<List<Bestellung>>(bestellungen) { })
                        .links(getTransitionalLinksBestellungen(bestellungen, kunde, uriInfo))
                        .build();
 	}
 	
 	//TODO findKundenByNachname überarbeiten - anscheinend werden Bestellungen nicht richtig mitgeladen
 	@GET
-	public Response findKundenByNachname(@QueryParam("nachname") @Pattern(regexp = Kunde.NACHNAME_PATTERN, message = "{kundenverwaltung.kunde.nachname.pattern}") String nachname) {		
+	public Response findKundenByNachname(@QueryParam("nachname") @Pattern(regexp = Kunde.NACHNAME_PATTERN, message = 
+	"{kundenverwaltung.kunde.nachname.pattern}") String nachname) {		
 		List<Kunde> kunden = null;
 		
 		if ("".equals(nachname)) {
@@ -142,15 +143,15 @@ public class KundeResource {
 			kunden = ks.findKundenByNachname("%" + nachname + "%", FetchType.NUR_KUNDE);
 		}
 		
-		if(kunden.isEmpty()) {
+		if (kunden.isEmpty()) {
 			throw new NotFoundException("Keine Kunden mit dem Namen \"" + nachname + "\" gefunden.");
 		}
 		
 		Object entity = null;
 		Link[] links = null;
 		
-		if(kunden != null) {
-			entity = new GenericEntity<List<Kunde>>(kunden) {};
+		if (kunden != null) {
+			entity = new GenericEntity<List<Kunde>>(kunden) { };
 			links = getTransitionalLinksKunden(kunden, uriInfo);
 		}
 		
@@ -179,7 +180,7 @@ public class KundeResource {
                               .rel(LAST_LINK)
                               .build();
 		
-		return new Link[] { self, first, last };
+		return new Link[] {self, first, last };
 	}
 
 	@POST
@@ -211,7 +212,7 @@ public class KundeResource {
 	public Response updateKunde(@Valid Kunde kunde) {
 		
 		// Vorhandenen Kunden ermitteln
-		final Kunde origKunde = ks.findKundeById(kunde.getId(),FetchType.NUR_KUNDE);
+		final Kunde origKunde = ks.findKundeById(kunde.getId(), FetchType.NUR_KUNDE);
 		if (origKunde == null) {
 			throw new NotFoundException("Es gibt diesen Kunden nicht.");
 		}
@@ -222,7 +223,7 @@ public class KundeResource {
 		LOGGER.tracef("Kunde nachher = %s", origKunde);
 		
 		// Update durchfuehren
-		kunde = ks.updateKunde(origKunde,false);
+		kunde = ks.updateKunde(origKunde, false);
 		setStructuralLinks(kunde, uriInfo);
 		return Response.ok(kunde)
 			       .links(getTransitionalLinks(kunde, uriInfo))
@@ -233,7 +234,7 @@ public class KundeResource {
 	@Path("{id:[1-9][0-9]*}")
 	@Transactional
 	public void deleteKunde(@PathParam("username") Long id) {
-		final Kunde kunde = ks.findKundeById(id,FetchType.NUR_KUNDE);
+		final Kunde kunde = ks.findKundeById(id, FetchType.NUR_KUNDE);
 		ks.deleteKunde(kunde);
 	}
 	
@@ -254,11 +255,12 @@ public class KundeResource {
 				                .rel(UPDATE_LINK)
 				                .build();
 
-		final Link remove = Link.fromUri(uriHelper.getUriKunde(KundeResource.class, "deleteKunde", kunde.getId(), uriInfo))
+		final Link remove = Link.fromUri(uriHelper.getUriKunde(KundeResource.class, "deleteKunde", 
+				kunde.getId(), uriInfo))
                                 .rel(REMOVE_LINK)
                                 .build();
 
-		return new Link[] { self, list, add, update, remove };
+		return new Link[] {self, list, add, update, remove };
 	}
 	
 	private Link[] getTransitionalLinksKunden(List<? extends Kunde> kunden, UriInfo uriInfo) {
@@ -274,7 +276,7 @@ public class KundeResource {
                               .rel(LAST_LINK)
                               .build();
 		
-		return new Link[] { first, last };
+		return new Link[] {first, last };
 	}
 	
 	public void setStructuralLinks(Kunde kunde, UriInfo uriInfo) {
@@ -310,12 +312,12 @@ public class KundeResource {
 	public byte[] download(@PathParam("id") Long kundeId) {
 		final Kunde kunde = ks.findKundeById(kundeId, FetchType.NUR_KUNDE);
 		if (kunde == null) {
-			throw new NotFoundException("Der Kunde mit der ID "+kundeId+" wurde nicht gefunden.");
+			throw new NotFoundException("Der Kunde mit der ID " + kundeId + " wurde nicht gefunden.");
 		}
 		
 		final File file = kunde.getFile();
 		if (file == null) {
-			throw new NotFoundException("Zu dem Kunden "+kundeId+" gibt es kein File.");
+			throw new NotFoundException("Zu dem Kunden " + kundeId + " gibt es kein File.");
 		}
 		LOGGER.tracef("%s", file.toString());
 		

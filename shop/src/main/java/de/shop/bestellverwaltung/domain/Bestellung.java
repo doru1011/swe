@@ -14,11 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
-
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -26,8 +23,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -41,8 +36,6 @@ import javax.persistence.Temporal;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.persistence.Index;
@@ -53,7 +46,7 @@ import org.jboss.logging.Logger;
 import de.shop.kundenverwaltung.domain.Kunde;
 
 @Entity
-@Table(indexes = { @Index(columnList = "kunde_fk"), @Index(columnList = "erstellt")})
+@Table(indexes = { @Index(columnList = "kunde_fk"), @Index(columnList = "erstellt") })
 @NamedQueries({
 	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN_BY_KUNDE_ID,
                 query = "SELECT b"
@@ -66,7 +59,7 @@ import de.shop.kundenverwaltung.domain.Kunde;
     @NamedQuery(name = Bestellung.FIND_BESTELLUNG_BY_ID,
     			query = "SELECT b"
     					+ " FROM Bestellung b"
-    					+ " WHERE b.id = :" +Bestellung.PARAM_ID)
+    					+ " WHERE b.id = :" + Bestellung.PARAM_ID)
 
 })
 

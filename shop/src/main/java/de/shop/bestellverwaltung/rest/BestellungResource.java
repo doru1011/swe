@@ -11,14 +11,12 @@ import java.net.URI;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 
 
 
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -46,7 +44,6 @@ import de.shop.bestellverwaltung.service.BestellungService;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.kundenverwaltung.service.KundeService;
-import de.shop.kundenverwaltung.service.KundeService.FetchType;
 import de.shop.util.Log;
 import de.shop.util.NotFoundException;
 import de.shop.util.rest.UriHelper;
@@ -152,7 +149,7 @@ public class BestellungResource {
                 .rel(ADD_LINK)
                 .build();
 
-		return new Link[] { self, add };
+		return new Link[] {self, add };
 	}
 	
 	public URI getUriBestellung(Bestellung bestellung, UriInfo uriInfo) {
@@ -208,12 +205,12 @@ public class BestellungResource {
 				artikelId = artikelUriStr.substring(startPos);
 				break;
 			}
-			throw new NotFoundException("Der Artikel mit der ID: "+artikelId+" wurde nicht gefunden.");
+			throw new NotFoundException("Der Artikel mit der ID: " + artikelId + " wurde nicht gefunden.");
 		}
 		
 		final List<Artikel> gefundeneArtikel = as.findArtikelByIds(artikelIds);
 		if (gefundeneArtikel.isEmpty()) {
-			throw new NotFoundException("Es wurde kein Artikel zur ID "+artikelIds.get(0)+" gefunden.");
+			throw new NotFoundException("Es wurde kein Artikel zur ID " + artikelIds.get(0) + " gefunden.");
 		}
 		
 		// Bestellpositionen haben URIs fuer persistente Artikel.
@@ -243,7 +240,7 @@ public class BestellungResource {
 		// Kunde mit den vorhandenen ("alten") Bestellungen ermitteln
 		bestellung = bs.createBestellung(bestellung, username);
 		if (bestellung == null) {
-			throw new NotFoundException("Es gibt keine Bestellung zum Usernamen: "+username);
+			throw new NotFoundException("Es gibt keine Bestellung zum Usernamen: " + username);
 		}
 		LOGGER.trace(bestellung);
 

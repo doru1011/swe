@@ -7,13 +7,9 @@ import static javax.persistence.PersistenceContextType.EXTENDED;
 
 import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Stateful;
@@ -88,7 +84,7 @@ public class KundeModel implements Serializable {
 	private static final String CLIENT_ID_CREATE_CAPTCHA_INPUT = "createKundeForm:captchaInput";
 	private static final String MSG_KEY_CREATE_KUNDE_WRONG_CAPTCHA = "kunde.wrongCaptcha";
 	
-	private static final Class<?>[] PASSWORD_GROUP = { PasswordGroup.class };
+	private static final Class<?>[] PASSWORD_GROUP = {PasswordGroup.class };
 	
 	private static final String CLIENT_ID_UPDATE_EMAIL = "updateKundeForm:email";
 	private static final String MSG_KEY_CONCURRENT_UPDATE = "persistence.concurrentUpdate";
@@ -134,7 +130,7 @@ public class KundeModel implements Serializable {
 	
 	private Kunde kunde;
 	
-	@Pattern(regexp = Kunde.USERNAME_PATTERN, message = "{kunde.username.pattern}" )
+	@Pattern(regexp = Kunde.USERNAME_PATTERN, message = "{kunde.username.pattern}")
 	private String username;
 	
 	

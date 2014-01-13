@@ -22,7 +22,7 @@ import de.shop.util.Log;
 import de.shop.util.NotFoundException;
 import de.shop.util.persistence.ConcurrentDeletedException;
 
-@RolesAllowed({"mitarbeiter", "admin"})
+@RolesAllowed({"mitarbeiter", "admin" })
 @SecurityDomain("shop")
 @Log
 public class LieferantService implements Serializable {
@@ -45,8 +45,8 @@ public class LieferantService implements Serializable {
 	public Lieferant findLieferantById(Long lieferantId) {	
 		
 		final Lieferant lieferant = em.find(Lieferant.class, lieferantId);		
-		if(lieferant == null) {
-			throw new NotFoundException("Kein Lieferant mit der ID\""+ lieferantId + "\" gefunden.");
+		if (lieferant == null) {
+			throw new NotFoundException("Kein Lieferant mit der ID\"" + lieferantId + "\" gefunden.");
 		}
 		return lieferant;
 	}
@@ -64,8 +64,8 @@ public class LieferantService implements Serializable {
 			final List<Lieferant> lieferant = em.createNamedQuery(Lieferant.FIND_LIEFERANT_BY_NAME, Lieferant.class)
 											.setParameter(Lieferant.PARAM_LIEFERANT_BEZEICHNUNG, name)
 											.getResultList();
-			if(lieferant == null) {
-				throw new NotFoundException("Kein Lieferant mit dem Namen \""  + name+ "\" gefunden.");
+			if (lieferant == null) {
+				throw new NotFoundException("Kein Lieferant mit dem Namen \""  + name + "\" gefunden.");
 		}
 		return lieferant;
 	}		
@@ -98,17 +98,18 @@ public class LieferantService implements Serializable {
 		em.detach(lieferant);
 		
 		// Wurde das Objekt konkurrierend geloescht?
-		Lieferant tmp = findLieferantById(lieferant.getId());
-		if(tmp == null){
+		final Lieferant tmp = findLieferantById(lieferant.getId());
+		if (tmp == null) {
 			throw new ConcurrentDeletedException(lieferant.getId());
 		}
 		em.detach(tmp);
 		
 		//Gibt es einen Artikel mit gleichem Namen?
-		List<Lieferant> tmpList = findLieferantByName(lieferant.getName());
-		for(Lieferant a : tmpList){
-			if(a.getId().longValue() != lieferant.getId().longValue() && a.getName() == lieferant.getName()){
-				throw new ArtikelNameExistsException("Ein Lieferant mit dem Namen \"" + lieferant.getName() +"\" existiert bereits.");
+		final List<Lieferant> tmpList = findLieferantByName(lieferant.getName());
+		for (Lieferant a : tmpList) {
+			if (a.getId().longValue() != lieferant.getId().longValue() && a.getName() == lieferant.getName()) {
+				throw new ArtikelNameExistsException("Ein Lieferant mit dem Namen \"" 
+			+ lieferant.getName() + "\" existiert bereits.");
 			}
 			em.detach(a);
 		}

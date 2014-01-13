@@ -34,7 +34,7 @@ import de.shop.util.NoMimeTypeException;
 import de.shop.util.NotFoundException;
 import de.shop.util.persistence.ConcurrentDeletedException;
 
-@RolesAllowed({"mitarbeiter", "admin"})
+@RolesAllowed({"mitarbeiter", "admin" })
 @SecurityDomain("shop")
 @Log
 public class KundeService implements Serializable {
@@ -252,7 +252,7 @@ public class KundeService implements Serializable {
 		final List<Kunde> kunden = em.createNamedQuery(Kunde.FIND_KUNDEN_BY_NACHNAME, Kunde.class)
 									 .setParameter(Kunde.PARAM_KUNDE_NACHNAME, nachname)
 									 .getResultList();
-		if(kunden == null) {
+		if (kunden == null) {
 			throw new NotFoundException("Kein Kunde mit dem Namen \"" + nachname + "\" gefunden.");
 		}
 		return kunden;
@@ -387,7 +387,7 @@ public class KundeService implements Serializable {
 	}
 	
 	public Kunde findKundeByBestellungId(Long bestellungId) {
-		try{
+		try {
 			final Kunde kunde = em.createNamedQuery(Kunde.FIND_KUNDE_BY_BESTELLUNG_ID, Kunde.class)
 				.setParameter(Kunde.PARAM_BESTELLUNG_ID, bestellungId)
 				.getSingleResult();

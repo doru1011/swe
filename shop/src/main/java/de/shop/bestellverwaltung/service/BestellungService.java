@@ -8,7 +8,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -25,7 +24,7 @@ import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.util.Log;
 import de.shop.util.NotFoundException;
 
-@RolesAllowed({"admin","mitarbeiter", "kunde"})
+@RolesAllowed({"admin", "mitarbeiter", "kunde" })
 @SecurityDomain("shop")
 @Log
 public class BestellungService implements Serializable {
@@ -87,7 +86,7 @@ public class BestellungService implements Serializable {
 	
 	public Kunde findKundeByBestellungId(Long id) {
 		try {
-			final Kunde kunde = em.createNamedQuery(Kunde.FIND_KUNDE_BY_BESTELLUNG_ID,Kunde.class)
+			final Kunde kunde = em.createNamedQuery(Kunde.FIND_KUNDE_BY_BESTELLUNG_ID, Kunde.class)
 								   .setParameter(Bestellung.PARAM_ID, id)
 								   .getSingleResult();
 			return kunde;

@@ -205,16 +205,18 @@ public class Lieferant {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Lieferant other = (Lieferant) obj;
+		final Lieferant other = (Lieferant) obj;
 		if (aktualisiert == null) {
 			if (other.aktualisiert != null)
 				return false;
-		} else if (!aktualisiert.equals(other.aktualisiert))
+		} 
+		else if (!aktualisiert.equals(other.aktualisiert))
 			return false;
 		if (erstellt == null) {
 			if (other.erstellt != null)
 				return false;
-		} else if (!erstellt.equals(other.erstellt))
+		} 
+		else if (!erstellt.equals(other.erstellt))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -224,17 +226,20 @@ public class Lieferant {
 		if (lieferantUri == null) {
 			if (other.lieferantUri != null)
 				return false;
-		} else if (!lieferantUri.equals(other.lieferantUri))
+		} 
+		else if (!lieferantUri.equals(other.lieferantUri))
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} 
+		else if (!name.equals(other.name))
 			return false;
 		if (versandkosten == null) {
 			if (other.versandkosten != null)
 				return false;
-		} else if (!versandkosten.equals(other.versandkosten))
+		} 
+		else if (!versandkosten.equals(other.versandkosten))
 			return false;
 		if (version != other.version)
 			return false;

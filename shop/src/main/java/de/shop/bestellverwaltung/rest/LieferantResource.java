@@ -90,21 +90,21 @@ public class LieferantResource {
 		
 		List<? extends Lieferant> lieferanten = null;
 		
-		if("".equals(lieferantName)){
+		if ("".equals(lieferantName)) {
 			lieferanten = ls.findAllLieferanten();
 		}
 		else {
 			lieferanten = ls.findLieferantByName("%" + lieferantName + "%");
 		}
 		
-		if(lieferanten.isEmpty()){
+		if (lieferanten.isEmpty()) {
 			throw new NotFoundException("Kein Lieferant mit dem Namen \"" + lieferantName + "\" gefunden.");
 		}
 		
 		Object entity = null;
 		Link[] links = null;
 		
-		if(lieferanten != null){
+		if (lieferanten != null) {
 			entity = new GenericEntity<List<? extends Lieferant>>(lieferanten) { };
 			links = getTransitionalLinksLieferant(lieferanten, uriInfo);
 		}
@@ -147,7 +147,7 @@ public class LieferantResource {
                               .rel(LAST_LINK)
                               .build();
 		
-		return new Link[] { first, last };
+		return new Link[] {first, last };
 	}
 	
 	
@@ -160,7 +160,7 @@ public class LieferantResource {
 		
 		//Vorhandenen Artikel finden
 		final Lieferant origLieferant = ls.findLieferantById(lieferant.getId());
-		if(origLieferant == null){
+		if (origLieferant == null) {
 			throw new NotFoundException("Kein Artikel mit ID " + lieferant.getId() + " gefunden");
 		}
 		

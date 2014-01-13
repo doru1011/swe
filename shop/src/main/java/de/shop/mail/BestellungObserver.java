@@ -1,28 +1,13 @@
 package de.shop.mail;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.ejb.Asynchronous;
 import javax.ejb.Stateful;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
-import javax.mail.Message.RecipientType;
-import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
 import org.jboss.logging.Logger;
-
-import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.bestellverwaltung.service.NeueBestellung;
-import de.shop.kundenverwaltung.domain.Kunde;
 
 @ApplicationScoped
 @Stateful
