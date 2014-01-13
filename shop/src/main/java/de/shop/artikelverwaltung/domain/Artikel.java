@@ -265,7 +265,8 @@ public class Artikel implements Serializable {
 		if (aufLager == null) {
 			if (other.aufLager != null)
 				return false;
-		} else if (!aufLager.equals(other.aufLager))
+		} 
+		else if (!aufLager.equals(other.aufLager))
 			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)

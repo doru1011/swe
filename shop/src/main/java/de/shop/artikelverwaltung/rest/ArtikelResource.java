@@ -86,7 +86,7 @@ public class ArtikelResource {
 		artikel = as.createArtikel(artikel);
 		
 		LOGGER.trace(artikel);
-		return Response.created(getUriArtikel(artikel,uriInfo)).build();
+		return Response.created(getUriArtikel(artikel, uriInfo)).build();
 	}
 	
 	@GET
@@ -107,7 +107,7 @@ public class ArtikelResource {
                               .rel(SELF_LINK)
                               .build();
 
-		return new Link[] { self };
+		return new Link[] {self };
 	}
 	
 	private Link[] getTransitionalLinksArtikel(List<? extends Artikel> artikel, UriInfo uriInfo) {
@@ -123,7 +123,7 @@ public class ArtikelResource {
                               .rel(LAST_LINK)
                               .build();
 		
-		return new Link[] { first, last };
+		return new Link[] {first, last };
 	}
 	
 	public URI getUriArtikel(Artikel artikel, UriInfo uriInfo) {
@@ -149,8 +149,8 @@ public class ArtikelResource {
 		Object entity = null;
 		Link[] links = null;
 		
-		if(artikel != null){
-			entity = new GenericEntity<List<Artikel>>(artikel){};
+		if (artikel != null) {
+			entity = new GenericEntity<List<Artikel>>(artikel) { };
 			links = getTransitionalLinksArtikel(artikel, uriInfo);
 		}
 		
@@ -169,7 +169,7 @@ public class ArtikelResource {
 		
 		//Vorhandenen Artikel finden
 		final Artikel origArtikel = as.findArtikelById(artikel.getId());
-		if(origArtikel == null) {
+		if (origArtikel == null) {
 			throw new NotFoundException("Kein Artikel mit ID " + artikel.getId() + " gefunden");
 		}
 		
@@ -183,7 +183,7 @@ public class ArtikelResource {
 		artikel = as.updateArtikel(origArtikel);
 
 		return Response.ok(artikel)
-					   .links(getTransitionalLinks(artikel,uriInfo))
+					   .links(getTransitionalLinks(artikel, uriInfo))
 					   .build();					   
 	}
 }

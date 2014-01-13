@@ -27,7 +27,7 @@ import de.shop.util.Log;
 import de.shop.util.NotFoundException;
 import de.shop.util.persistence.ConcurrentDeletedException;
 
-@RolesAllowed({"mitarbeiter", "admin"})
+@RolesAllowed({"mitarbeiter", "admin" })
 @SecurityDomain("shop")
 @Log
 public class ArtikelService implements Serializable {
@@ -68,7 +68,7 @@ public class ArtikelService implements Serializable {
 			final List<Artikel> artikel = em.createNamedQuery(Artikel.FIND_ARTIKEL_BY_NAME, Artikel.class)
 													.setParameter(Artikel.PARAM_NAME, name)
 													.getResultList();
-			if(artikel == null){
+			if (artikel == null) {
 				throw new NotFoundException("Kein Artikel mit  dem Namen \"" + name + "\" gefunden.");
 			}
 			return artikel;
@@ -136,17 +136,18 @@ public class ArtikelService implements Serializable {
 			em.detach(artikel);
 			
 			// Wurde das Objekt konkurrierend geloescht?
-			Artikel tmp = findArtikelById(artikel.getId());
-			if(tmp == null){
+			final Artikel tmp = findArtikelById(artikel.getId());
+			if (tmp == null) {
 				throw new ConcurrentDeletedException(artikel.getId());
 			}
 			em.detach(tmp);
 			
 //			//Gibt es einen Artikel mit gleichem Namen?
-			List<Artikel> tmpList = findArtikelByName(artikel.getName());
-			for(Artikel a : tmpList){
-				if(a.getId().longValue() != artikel.getId().longValue() && a.getName() == artikel.getName()){
-					throw new ArtikelNameExistsException("Ein Artikel mit dem Namen \"" + artikel.getName() +"\" existiert bereits.");
+			final List<Artikel> tmpList = findArtikelByName(artikel.getName());
+			for (Artikel a : tmpList) {
+				if (a.getId().longValue() != artikel.getId().longValue() && a.getName() == artikel.getName()) {
+					throw new ArtikelNameExistsException("Ein Artikel mit dem Namen \"" 
+				+ artikel.getName() + "\" existiert bereits.");
 				}
 			}
 						

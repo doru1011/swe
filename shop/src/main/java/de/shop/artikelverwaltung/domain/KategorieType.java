@@ -11,7 +11,7 @@ public enum KategorieType {
 
 	private String internal;
 	
-	private KategorieType(String internal){
+	private KategorieType(String internal) {
 		this.internal = internal;
 	}
 	
@@ -19,8 +19,8 @@ public enum KategorieType {
 		return internal;
 	}
 	
-	public static KategorieType build(String internal){
-		if (internal == null){
+	public static KategorieType build(String internal) {
+		if (internal == null) {
 			return null;
 		}
 		
