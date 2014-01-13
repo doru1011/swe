@@ -88,7 +88,7 @@ public class LieferantResourceTest extends AbstractResourceTest {
 	
 	@Test
 	@InSequence(2)
-	public void findLieferantByIdNichtVorhanden(){
+	public void findLieferantByIdNichtVorhanden() {
 
 		// Given
 		final Long lieferantId = LIEFERANT_ID_NICHT_VORHANDEN;
@@ -133,7 +133,7 @@ public class LieferantResourceTest extends AbstractResourceTest {
 	
 	@Test
 	@InSequence(11)
-	public void findLieferantByNameNichtVorhanden(){
+	public void findLieferantByNameNichtVorhanden() {
 		LOGGER.fine(beginn);
 		
 		//Given
@@ -201,7 +201,7 @@ public class LieferantResourceTest extends AbstractResourceTest {
 	
 	@Test
 	@InSequence(31)
-	public void createInvalidLieferant(){
+	public void createInvalidLieferant() {
 		LOGGER.finer(beginn);
 		
 		//Given
@@ -253,7 +253,7 @@ public class LieferantResourceTest extends AbstractResourceTest {
 	
 	@Test
 	@InSequence(40)
-	public void updateLieferant(){
+	public void updateLieferant() {
 		LOGGER.finer(beginn);
 		//TODO Username und Passwort in getHttpsClients einfügen
 		//Given

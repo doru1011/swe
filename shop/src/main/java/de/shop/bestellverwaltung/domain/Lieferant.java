@@ -221,7 +221,8 @@ public class Lieferant {
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} 
+		else if (!id.equals(other.id))
 			return false;
 		if (lieferantUri == null) {
 			if (other.lieferantUri != null)

@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.lang.invoke.MethodHandles;
-import java.math.BigDecimal;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 import static javax.ws.rs.client.Entity.entity;
 
-import javax.ws.rs.client.Entity;
+
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
@@ -195,7 +195,7 @@ public class KundeResourceTest extends AbstractResourceTest {
 						   .doesNotContainNull()
 						   .doesNotHaveDuplicates();
 		
-		for(Kunde k : kunden){
+		for (Kunde k : kunden) {
 			assertThat(k.getNachname().contains(nachname));
 		}
 		
@@ -411,7 +411,7 @@ public class KundeResourceTest extends AbstractResourceTest {
 //
 	@Test
 	@InSequence(50)
-	public void updateKunde(){
+	public void updateKunde() {
 		LOGGER.finer("BEGINN");
 		//TODO Username und Passwort in getHttpsClients einfügen
 		
@@ -587,7 +587,7 @@ public class KundeResourceTest extends AbstractResourceTest {
                                                      .request()
                                                      .accept(mimeType)
                                                      .get();
-		downloadBytes = response.readEntity(new GenericType<byte[]>() {});
+		downloadBytes = response.readEntity(new GenericType<byte[]>() { });
 		
 		// Then (2)
 		assertThat(uploadBytes.length).isEqualTo(downloadBytes.length);

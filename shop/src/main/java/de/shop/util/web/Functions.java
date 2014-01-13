@@ -10,5 +10,5 @@ public final class Functions {
 		return new Date();
 	}
 	
-	private Functions() {}
+	private Functions() { }
 }

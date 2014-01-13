@@ -59,7 +59,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 	
 	
 	private static final String ARTIKEL_NAME_VORHANDEN = "Schrank";
-	private static final String ARTIKEL_NAME_NICHT_VORHANDEN ="Nicht";
+	private static final String ARTIKEL_NAME_NICHT_VORHANDEN = "Nicht";
 	private static final String UPDATE_ARTIKEL_NAME = "Schlafcouch";
 	private static final String NEUER_ARTIKEL_NAME = "Gartenhaus";
 	private static final String NEUER_ARTIKEL_BESCHREIBUNG = "Das ist ein tolles Gartenhaus";
@@ -102,7 +102,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 
 	@Test
 	@InSequence(11)
-	public void findArtikelByIdNichtVorhanden(){
+	public void findArtikelByIdNichtVorhanden() {
 
 		// Given
 		final Long artikelId = ARTIKEL_ID_NICHT_VORHANDEN;
@@ -125,7 +125,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 
 	@Test
 	@InSequence(20)
-	public void findArtikelbyName(){
+	public void findArtikelbyName() {
 		LOGGER.fine("BEGINN");
 		
 		//Given
@@ -147,7 +147,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 						   .doesNotContainNull()
 						   .doesNotHaveDuplicates();
 		
-		for(Artikel a : artikel){
+		for (Artikel a : artikel) {
 			assertThat(a.getName().contains(name));
 		}
 		
@@ -182,7 +182,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 
 	@Test
 	@InSequence(30)
-	public void createArtikel(){
+	public void createArtikel() {
 		
 		//Given
 		final String name = NEUER_ARTIKEL_NAME;
@@ -190,7 +190,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 		final Boolean aufLager = true;
 		final String beschreibung = NEUER_ARTIKEL_BESCHREIBUNG;
 		final KategorieType kategorie = KategorieType.GARTEN;
-		final BigDecimal preis = BigDecimal.valueOf(999,95);
+		final BigDecimal preis = BigDecimal.valueOf(999, 95);
 		
 		final Artikel artikel = new Artikel();
 		artikel.setName(name);
@@ -218,7 +218,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 
 	@Test
 	@InSequence(31)
-	public void createInvalidArtikel(){
+	public void createInvalidArtikel() {
 		LOGGER.finer("BEGINN");
 		
 		//Given
@@ -300,7 +300,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 //	@Ignore
 	@Test
 	@InSequence(40)
-	public void updateArtikel(){
+	public void updateArtikel() {
 		LOGGER.finer("BEGINN");		
 		
 		//Given

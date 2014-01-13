@@ -69,7 +69,7 @@ import de.shop.util.persistence.File;
 
 @Entity
 @XmlRootElement
-@Table(name = "kunde", indexes = { @Index(columnList = "nachname"), @Index(columnList = "file_fk")})
+@Table(name = "kunde", indexes = { @Index(columnList = "nachname"), @Index(columnList = "file_fk") })
 
 @NamedQueries({
 	@NamedQuery(name = Kunde.FIND_KUNDEN,
@@ -193,12 +193,12 @@ public class Kunde implements Serializable {
 	
 		
 	@Column(nullable = false, updatable = false)
-	@Pattern(regexp = USERNAME_PATTERN, message = "{kunde.username.pattern}" )
+	@Pattern(regexp = USERNAME_PATTERN, message = "{kunde.username.pattern}")
 	@NotNull(message = "{kundenverwaltung.kunde.username.notNull}")
 	private String username;
 	
 	@Id
-	@Column(nullable =false, updatable = false)
+	@Column(nullable = false, updatable = false)
 	@GeneratedValue
 	@Min(value = MIN_ID, message = "{kundenverwaltung.kunde.id.min}")
 	private Long id;
@@ -244,7 +244,7 @@ public class Kunde implements Serializable {
 	@ElementCollection(fetch = EAGER)
 	@CollectionTable(name = "kunde_rolle", 
 		joinColumns = @JoinColumn(name = "kunde_fk", nullable = false),
-		uniqueConstraints = @UniqueConstraint(columnNames = { "kunde_fk", "rolle"}))
+		uniqueConstraints = @UniqueConstraint(columnNames = { "kunde_fk", "rolle" }))
 	@Column(table = "kunde_rolle", name = "rolle", length = 32, nullable = false)
 	private Set<RolleType> rollen;
 	
@@ -504,7 +504,7 @@ public class Kunde implements Serializable {
 		return "Kunde [username=" + username + ", id=" + id + ", password="
 				+ password + ", passwordWdh=" + passwordWdh + ", version="
 				+ version + ", nachname=" + nachname + ", vorname=" + vorname 
-				+", email=" + email
+				+ ", email=" + email
 				+ ", erstellt=" + erstellt
 				+ ", aktualisiert=" + aktualisiert + ", bestellungenUri="
 				+ bestellungenUri + "]";
@@ -549,47 +549,56 @@ public class Kunde implements Serializable {
 		if (aktualisiert == null) {
 			if (other.aktualisiert != null)
 				return false;
-		} else if (!aktualisiert.equals(other.aktualisiert))
+		} 
+		else if (!aktualisiert.equals(other.aktualisiert))
 			return false;
 		if (bestellungenUri == null) {
 			if (other.bestellungenUri != null)
 				return false;
-		} else if (!bestellungenUri.equals(other.bestellungenUri))
+		} 
+		else if (!bestellungenUri.equals(other.bestellungenUri))
 			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} 
+		else if (!email.equals(other.email))
 			return false;
 		if (erstellt == null) {
 			if (other.erstellt != null)
 				return false;
-		} else if (!erstellt.equals(other.erstellt))
+		} 
+		else if (!erstellt.equals(other.erstellt))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} 
+		else if (!id.equals(other.id))
 			return false;
 		if (nachname == null) {
 			if (other.nachname != null)
 				return false;
-		} else if (!nachname.equals(other.nachname))
+		} 
+		else if (!nachname.equals(other.nachname))
 			return false;
 		if (vorname == null) {
 			if (other.vorname != null)
 				return false;
-		} else if (!vorname.equals(other.vorname))
+		} 
+		else if (!vorname.equals(other.vorname))
 			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
-		} else if (!password.equals(other.password))
+		} 
+		else if (!password.equals(other.password))
 			return false;
 		if (passwordWdh == null) {
 			if (other.passwordWdh != null)
 				return false;
-		} else if (!passwordWdh.equals(other.passwordWdh))
+		} 
+		else if (!passwordWdh.equals(other.passwordWdh))
 			return false;
 //		if (rollen == null) {
 //			if (other.rollen != null)
@@ -599,7 +608,8 @@ public class Kunde implements Serializable {
 		if (username == null) {
 			if (other.username != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} 
+		else if (!username.equals(other.username))
 			return false;
 		if (version != other.version)
 			return false;

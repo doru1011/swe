@@ -3,7 +3,7 @@ package de.shop.artikelverwaltung.service;
 
 import javax.ejb.ApplicationException;
 
-import de.shop.artikelverwaltung.service.ArtikelServiceException;
+
 
 @ApplicationException(rollback = true)
 public class ArtikelNameExistsException extends ArtikelServiceException {

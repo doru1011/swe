@@ -14,8 +14,6 @@ import javax.ws.rs.ext.Provider;
 
 import de.shop.util.rest.Messages;
 
-import de.shop.util.Log;
-
 
 /**
  *

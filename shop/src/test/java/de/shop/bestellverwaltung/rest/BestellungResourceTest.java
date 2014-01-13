@@ -1,8 +1,6 @@
 package de.shop.bestellverwaltung.rest;
 
-import static de.shop.util.TestConstants.USERNAME_ADMIN;
-import static de.shop.util.TestConstants.PASSWORD_ADMIN;
-import static de.shop.util.TestConstants.ARTIKEL_ID_URI;
+
 import static de.shop.util.TestConstants.ARTIKEL_URI;
 import static de.shop.util.TestConstants.BESTELLUNGEN_ID_KUNDE_URI;
 import static de.shop.util.TestConstants.BESTELLUNGEN_ID_PATH_PARAM;
@@ -22,9 +20,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.Principal;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
 import java.util.logging.Logger;
 
 import javax.ws.rs.core.Response;
@@ -34,10 +30,10 @@ import org.jboss.arquillian.junit.InSequence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.shop.artikelverwaltung.rest.ArtikelResource;
+
 import de.shop.bestellverwaltung.domain.Bestellposition;
 import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.bestellverwaltung.service.NeueBestellung;
+
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.util.AbstractResourceTest;
@@ -87,7 +83,7 @@ public class BestellungResourceTest extends AbstractResourceTest {
 	
 	@Test
 	@InSequence(2)
-	public void findBestellungByIdNichtVorhanden(){
+	public void findBestellungByIdNichtVorhanden() {
 
 		// Given
 		final Long bestellungId = BESTELLUNG_ID_NICHT_VORHANDEN;
@@ -193,7 +189,7 @@ LOGGER.finer("BEGINN");
 		
 		// When
 		Long id;
-		Response response = getHttpsClient(USERNAME,PASSWORD).target(BESTELLUNGEN_URI)
+		Response response = getHttpsClient(USERNAME, PASSWORD).target(BESTELLUNGEN_URI)
                                                               .request()
                                                               .post(json(bestellung));
 			
@@ -208,7 +204,7 @@ LOGGER.finer("BEGINN");
 		assertThat(id).isPositive();
 		
 		// Gibt es die neue Bestellung?
-		response = getHttpsClient(USERNAME,PASSWORD).target(BESTELLUNGEN_ID_URI)
+		response = getHttpsClient(USERNAME, PASSWORD).target(BESTELLUNGEN_ID_URI)
                                    .resolveTemplate(BESTELLUNGEN_ID_PATH_PARAM, id)
                                    .request()
                                    .accept(APPLICATION_JSON)
